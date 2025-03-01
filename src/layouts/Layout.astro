@@ -1,22 +1,51 @@
+---
+import PageTransition from "../components/PageTransition";
+import Preloader from "../components/Preloader.astro";
+
+const {
+  title = "Metal Treiding",
+  description = "A fast and lightweight Astro project",
+  keywords = "astro, seo, web development",
+  author = "Your Name",
+  image = "/default-og-image.png",
+  url = "https://yourwebsite.com",
+  robots = "index, follow",
+  themeColor = "#ffffff",
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content={robots} />
+		<meta name="author" content={author} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="theme-color" content={themeColor} />
+
+		<!-- Open Graph (для Facebook, LinkedIn и т.д.) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+		<meta property="og:url" content={url} />
+
+		<!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={image} />
+
+		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<PageTransition>
+			<Preloader message="Загрузка сайта..." />
+			<slot />
+		</PageTransition>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
