@@ -1,0 +1,63 @@
+@mixin flexbox($direction) {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin absolute-fw {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin full-parent {
+    width: 100%;
+    height: 100%;
+}
+
+@mixin no-padding {
+    padding: 0;
+    margin: 0;
+}
+
+@mixin button-kit {
+    padding: 1.75rem;
+    font-size: 1.75rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+@mixin rubik-font($font-weight) {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: $font-weight;
+    font-style: normal;
+}
+
+@mixin classic-borders {
+    border: 1px solid #565050ad;
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+}
+
+@mixin no-def-styles {
+    text-decoration: none;
+    outline: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    border: none;
+    background-color: transparent;
+}
+
+@mixin text-header($font-size, $text-align, $font-weight) {
+    font-size: $font-size;
+    text-align: $text-align;
+    font-weight: $font-weight;
+    background-color: transparent;
+    width: 100%;
+}

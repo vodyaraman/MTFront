@@ -1,0 +1,27 @@
+@use "@/styles/Common.scss" as *;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.main-button {
+    @include flexbox(row);
+    @include no-def-styles();
+    @include classic-borders();
+    width: fit-content;
+    @include button-kit();
+
+    &__text {
+        z-index: 2;
+        position: relative;
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        -webkit-text-stroke: 1px #12220ecb;
+        @include rubik-font(700);
+    }
+
+    &__bg {
+        @include absolute-fw();
+        background: center/cover no-repeat;
+        transform: translateX(-80%);
+        z-index: 1;
+    }
+}

@@ -1,0 +1,22 @@
+@use "@/styles/Common.scss" as *;
+
+
+.logo {
+    @include flexbox(row);
+    width: 100%;
+    gap: 1rem;
+    justify-content: flex-start;
+
+    &__icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    &__text {
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 5px rgb(0, 0, 0);
+    }
+}

@@ -1,7 +1,36 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import MainButton from "../components/main_button/MainButton";
+import "./Hero.scss";
+import Logo from "../components/logo/Logo";
 ---
 
 <Layout>
-	Hello World!
+	<section class="hero">
+		<img
+			class="hero__background"
+			src="/backgrounds/hero-background.png"
+			alt=""
+		/>
+		<article class="hero__content">
+			<Logo client:visible/>
+			<h1 class="hero__title">
+				Мы создаем лучшие условия для экологии и бизнеса
+			</h1>
+			<MainButton
+				client:load
+				bgImage="/textures/button-background-green.svg"
+				text="УТИЛИЗАЦИЯ ОТХОДОВ"
+				href="/about"
+			/>
+			<nav class="hero__nav">
+				<a href="/advantages" class="hero__nav-link">
+					Наши преимущества
+				</a>
+				<a href="/contact" class="hero__nav-link">
+					Связаться с нами
+				</a>
+			</nav>
+		</article>
+	</section>
 </Layout>

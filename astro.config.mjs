@@ -20,7 +20,8 @@ export default defineConfig({
       preprocessorOptions: {
         scss: {
           additionalData: `
-            @import "@/styles/Сommon.scss"; 
+            @use "@/styles/Common.scss";
+            @use "@/styles/Global.scss";
           `,
           quietDeps: true,
         }
