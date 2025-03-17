@@ -1,0 +1,7 @@
+.globe-wrapper {
+    position: relative;
+    width: calc(15vw + 15vh);
+    height: calc(15vw + 15vh);
+    filter: sepia(1); // Изначально сепия включена
+    overflow: hidden;
+}

@@ -5,6 +5,7 @@
     @include flexbox(row);
     @include no-def-styles();
     @include classic-borders();
+    border-color: #e4e4e462;
     width: fit-content;
     @include button-kit();
 
