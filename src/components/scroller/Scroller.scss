@@ -1,0 +1,44 @@
+@use "@/styles/Common.scss" as *;
+
+.scroller {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+
+    &.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .scroller-text {
+        @include flexbox(column);
+        font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 20px;
+        text-align: center;
+        white-space: nowrap;
+        transform-origin: center;
+
+        &__link {
+            @include no-def-styles();
+            color: #dfdfdfbe;
+
+            &:hover {
+                color: #dfdfdfef;
+            }
+        }
+
+        .scroller-background {
+            position: absolute;
+            border-radius: 50px;
+            background: radial-gradient(to center, #dfdfdf25, #dfdfdfbe);
+            width: 100px;
+            height: 100px;
+            z-index: 2;
+        }
+    }
+}

@@ -1,6 +1,5 @@
 ---
 import PageTransition from "../components/PageTransition";
-import Preloader from "../components/Preloader.astro";
 
 const {
   title = "Metal Treiding",
@@ -44,7 +43,6 @@ const {
 	</head>
 	<body>
 		<PageTransition>
-			<Preloader message="Загрузка сайта..." />
 			<slot />
 		</PageTransition>
 	</body>
