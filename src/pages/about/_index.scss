@@ -3,29 +3,30 @@
 .hero {
     @include flexbox(row);
     @include no-padding();
-    width: 100%;
+    justify-content: space-between;
+    padding: 0 14vw;
+    width: 100vw;
     height: 100vh;
     position: relative;
+    box-sizing: border-box;
 
     &__background {
         @include absolute-fw();
         z-index: -1;
         object-fit: cover;
-        background-color: black;
+        background-color: rgb(0, 0, 0);
     }
 
     &__showcase {
         @include flexbox(column);
-        @include full-parent();
     }
 
     &__content {
         @include flexbox(column);
-        right: 10vw;
         align-items: flex-start;
-        gap: 2rem;
+        gap: calc(1.5vw);
         text-align: left;
-        max-width: 35vw;
+        max-width: 40vw;
 
         .logo {
             left: 0;
@@ -34,7 +35,7 @@
 
     &__title {
         @include no-padding();
-        @include text-header(6rem, left, 500);
+        @include text-header(calc(2 *(1.5vw + 1vh)), left, 500);
         @include rubik-font(500);
         line-height: 5.5rem;
         width: fit-content;

@@ -1,9 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import swup from '@swup/astro';
 
 export default defineConfig({
-  integrations: [react()],
+  integrations: [react(), swup()],
   vite: {
     resolve: {
       alias: {

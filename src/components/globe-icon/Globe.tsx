@@ -7,7 +7,6 @@ function GlobeMesh({ mousePosition }: { mousePosition: { x: number; y: number } 
   const globeRef = useRef<THREE.Mesh>(null);
   const texture = useTexture("/textures/world-map.jpg");
 
-  // Начальная ориентация (Россия в центре)
   const initialRotation = new THREE.Euler(0.8, -2.8, 0, "XYZ");
 
   useEffect(() => {
@@ -18,11 +17,9 @@ function GlobeMesh({ mousePosition }: { mousePosition: { x: number; y: number } 
 
   useFrame(() => {
     if (globeRef.current) {
-      // Движение в зависимости от мыши
-      const targetX = mousePosition.y * 0.2; // Наклон вверх-вниз
-      const targetY = mousePosition.x * 0.2; // Наклон влево-вправо
+      const targetX = mousePosition.y * 0.2;
+      const targetY = mousePosition.x * 0.2;
 
-      // Плавная интерполяция
       globeRef.current.rotation.x = THREE.MathUtils.lerp(globeRef.current.rotation.x, targetX + initialRotation.x, 0.1);
       globeRef.current.rotation.y = THREE.MathUtils.lerp(globeRef.current.rotation.y, targetY + initialRotation.y, 0.1);
     }
@@ -38,12 +35,13 @@ function GlobeMesh({ mousePosition }: { mousePosition: { x: number; y: number } 
 
 export default function Globe() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
-      const x = (event.clientX / innerWidth - 0.5) * 2; // Нормализация (-1 до 1)
-      const y = -(event.clientY / innerHeight - 0.5) * 2; // Инвертируем ось Y
+      const x = (event.clientX / innerWidth - 0.5) * 2;
+      const y = -(event.clientY / innerHeight - 0.5) * 2;
 
       setMousePosition({ x, y });
     };
@@ -51,6 +49,13 @@ export default function Globe() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsReady(true), 500); // Задержка перед рендером
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isReady) return null;
 
   return (
     <Canvas camera={{ position: [0, 0, 3], fov: 45 }}>

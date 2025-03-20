@@ -13,12 +13,18 @@
     "@react-three/drei": "^10.0.3",
     "@react-three/fiber": "^9.0.4",
     "@studio-freight/lenis": "^1.0.42",
+    "@swup/astro": "^1.5.0",
+    "@swup/js-plugin": "^3.2.0",
+    "@swup/parallel-plugin": "^0.4.0",
+    "@swup/preload-plugin": "^3.2.11",
+    "@swup/progress-plugin": "^3.2.0",
     "astro": "^5.4.0",
     "framer-motion": "^12.4.7",
     "gsap": "^3.12.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sass": "^1.85.1",
+    "swup": "^4.8.1",
     "three": "^0.174.0"
   }
 }

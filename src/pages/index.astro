@@ -1,43 +1,43 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import MainButton from "../components/main_button/MainButton";
-import "./_Hero.scss";
+import "./_index.scss";
 import Logo from "../components/logo/Logo";
 import GlobeWrapper from "../components/globe-icon/GlobeWrapper";
 import Scroller from "../components/scroller/Scroller";
-
+import AnimationWrapper from "./_animation";
 ---
 
 <Layout>
 	<section class="hero">
 		<img
 			class="hero__background"
-			src="/backgrounds/hero-background.svg"
+			src="/backgrounds/hero-background-alternate.svg"
 			alt=""
+			transition:persist
 		/>
-		<div class="hero__showcase">
-			<GlobeWrapper client:load/>
-		</div>
 		<article class="hero__content">
-			<Logo client:visible/>
+			<Logo client:visible transition:persist />
 			<h1 class="hero__title">
 				Мы создаем лучшие условия для экологии и бизнеса
 			</h1>
-			<MainButton
-				client:load
-				bgImage="/textures/button-background-green.svg"
-				text="УТИЛИЗАЦИЯ ОТХОДОВ"
-				href="/about"
-			/>
-			<nav class="hero__nav">
+			<MainButton client:load text="УТИЛИЗАЦИЯ ОТХОДОВ" href="/about" />
+		</article>
+		<div class="hero__showcase">
+			<GlobeWrapper client:load />
+		</div>
+		<Scroller targetPage="/about" client:idle />
+		<AnimationWrapper client:load/>
+	</section>
+</Layout>
+
+{
+	/*<nav class="hero__nav">
 				<a href="/advantages" class="hero__nav-link">
 					Наши преимущества
 				</a>
 				<a href="/contact" class="hero__nav-link">
 					Связаться с нами
 				</a>
-			</nav>
-		</article>
-		<Scroller targetPage="/about" client:idle/>
-	</section>
-</Layout>
+			</nav>*/
+}

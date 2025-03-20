@@ -1,7 +1,28 @@
 ---
+import Logo from '../../components/logo/Logo';
+import MainButton from '../../components/main_button/MainButton';
+import Scroller from '../../components/scroller/Scroller';
 import Layout from '../../layouts/Layout.astro';
+import "./_index.scss";
 ---
 
 <Layout>
-	Hello World!
+	<section class="hero">
+		<img
+			class="hero__background"
+			src="/backgrounds/hero-background-alternate.svg"
+			alt=""
+		/>
+		<article class="hero__content">
+			<h1 class="hero__title">
+				Одна из многоопциональных компаний муранской области в сфере утилизации отходов
+			</h1>
+			<MainButton
+				client:load
+				text="УТИЛИЗАЦИЯ ОТХОДОВ"
+				href="/"
+			/>
+		</article>
+		<Scroller targetPage="/" client:visible/>
+	</section>
 </Layout>
