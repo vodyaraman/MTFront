@@ -1,12 +1,12 @@
 html.is-changing .transition-fade {
   opacity: 1;
-  scale: 1;
-  transition: all 0.5s ease-in-out;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 html.is-animating .transition-fade {
   opacity: 0;
-  scale: 0.8;
+  transform: translateY(250px);
 }
 
 html {

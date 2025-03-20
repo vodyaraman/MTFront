@@ -17,6 +17,7 @@
         text-transform: uppercase;
         -webkit-text-stroke: 1px #12220ecb;
         @include rubik-font(700);
+        font-size: calc(0.6 * (1.5vw + 1vh))
     }
 
     &__bg {

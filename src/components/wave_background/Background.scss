@@ -1,0 +1,7 @@
+@use "@/styles/Common.scss" as *;
+
+.hero-background {
+    @include absolute-fw();
+    z-index: -1;
+    background-color: rgb(197, 27, 27);
+}

@@ -6,13 +6,21 @@ import Logo from "../components/logo/Logo";
 import GlobeWrapper from "../components/globe-icon/GlobeWrapper";
 import Scroller from "../components/scroller/Scroller";
 import AnimationWrapper from "./_animation";
+import Background from "../components/wave_background/Background";
 ---
 
 <Layout>
+	<Background client:load/>
 	<section class="hero">
 		<img
+			class="hero__background static"
+			src="/backgrounds/hero-background-static.svg"
+			alt=""
+			transition:persist
+		/>
+		<img
 			class="hero__background"
-			src="/backgrounds/hero-background-alternate.svg"
+			src="/backgrounds/hero-overlay.svg"
 			alt=""
 			transition:persist
 		/>

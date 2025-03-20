@@ -9,6 +9,7 @@ interface ScrollerProps {
 export default function Scroller({ targetPage }: ScrollerProps) {
     const scrollerRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
+    const linkRef = useRef<HTMLAnchorElement>(null);
     const [isVisible, setIsVisible] = useState(false);
     const resetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const touchStartY = useRef(0);
@@ -39,7 +40,7 @@ export default function Scroller({ targetPage }: ScrollerProps) {
                     setIsVisible(true);
                     startResetTimer();
                 } else {
-                    window.location.href = targetPage;
+                    linkRef.current?.click(); // Эмулируем клик по ссылке
                 }
             } else {
                 resetScroller();
@@ -57,7 +58,7 @@ export default function Scroller({ targetPage }: ScrollerProps) {
                     setIsVisible(true);
                     startResetTimer();
                 } else {
-                    window.location.href = targetPage;
+                    linkRef.current?.click(); // Эмулируем клик по ссылке
                 }
             } else if (touchStartY.current - touchEndY < -50) {
                 resetScroller();
@@ -96,7 +97,9 @@ export default function Scroller({ targetPage }: ScrollerProps) {
     return (
         <div ref={scrollerRef} className={`scroller ${isVisible ? "visible" : ""}`}>
             <div ref={textRef} className="scroller-text">
-                <a className="scroller-text__link" href={targetPage}> Прокрутите вниз ещё раз, чтобы узнать о нас подробнее</a>
+                <a ref={linkRef} className="scroller-text__link" href={targetPage}>
+                    Прокрутите вниз ещё раз, чтобы узнать о нас подробнее
+                </a>
             </div>
             <div className="scroller-background" />
         </div>

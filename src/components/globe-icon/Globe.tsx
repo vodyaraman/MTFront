@@ -35,7 +35,6 @@ function GlobeMesh({ mousePosition }: { mousePosition: { x: number; y: number } 
 
 export default function Globe() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -49,13 +48,6 @@ export default function Globe() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsReady(true), 500); // Задержка перед рендером
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!isReady) return null;
 
   return (
     <Canvas camera={{ position: [0, 0, 3], fov: 45 }}>
