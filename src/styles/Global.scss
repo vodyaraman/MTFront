@@ -12,19 +12,29 @@ $breakpoints: (
 @mixin font-size($min-width: null, $max-width: null, $size: null) {
   @if $min-width and $max-width {
     @media (min-width: $min-width) and (max-width: $max-width) {
-      body, html {
+
+      body,
+      html {
         font-size: $size;
       }
     }
-  } @else if $min-width {
+  }
+
+  @else if $min-width {
     @media (min-width: $min-width) {
-      body, html {
+
+      body,
+      html {
         font-size: $size;
       }
     }
-  } @else if $max-width {
+  }
+
+  @else if $max-width {
     @media (max-width: $max-width) {
-      body, html {
+
+      body,
+      html {
         font-size: $size;
       }
     }
@@ -34,6 +44,7 @@ $breakpoints: (
 // Общие стили
 body {
   @include no-padding();
+  font-family: sans-serif;
   overflow: hidden;
 }
 
@@ -42,22 +53,36 @@ section {
   height: 100vh;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
 ::selection {
-  background-color: #02101f6c; 
+  background-color: #02101f6c;
   color: #ffffff;
 }
 
 *::-webkit-scrollbar {
-  width: 3px; /* Для Chrome, Safari и Edge */
+  width: 3px;
+  /* Для Chrome, Safari и Edge */
 }
 
 *::-webkit-scrollbar-track {
-  width: 3px; /* Для Chrome, Safari и Edge */
+  width: 3px;
+  /* Для Chrome, Safari и Edge */
   background-color: #e7e4e477;
 }
 
 *::-webkit-scrollbar-thumb {
-  width: 3px; /* Для Chrome, Safari и Edge */
+  width: 3px;
+  /* Для Chrome, Safari и Edge */
   background-color: #161616;
 }
 
@@ -85,15 +110,11 @@ section {
 
 // Размеры шрифта для разных устройств
 @include font-size($min-width: map-get($breakpoints, large-desktop), $size: 14px);
-@include font-size(
-  $min-width: map-get($breakpoints, medium-desktop),
+@include font-size($min-width: map-get($breakpoints, medium-desktop),
   $max-width: map-get($breakpoints, large-desktop),
-  $size: 13px
-);
-@include font-size(
-  $min-width: map-get($breakpoints, small-desktop),
+  $size: 13px);
+@include font-size($min-width: map-get($breakpoints, small-desktop),
   $max-width: map-get($breakpoints, medium-desktop),
-  $size: 12px
-);
+  $size: 12px);
 @include font-size($max-width: map-get($breakpoints, small-desktop), $size: 11px);
 @include font-size($max-width: map-get($breakpoints, phone), $size: 10px);

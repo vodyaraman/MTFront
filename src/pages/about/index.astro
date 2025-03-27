@@ -3,26 +3,18 @@ import Logo from '../../components/logo/Logo';
 import MainButton from '../../components/main_button/MainButton';
 import Scroller from '../../components/scroller/Scroller';
 import Layout from '../../layouts/Layout.astro';
-import "./_index.scss";
+import './_index.scss';
 ---
 
 <Layout>
 	<section class="hero">
-		<img
-			class="hero__background"
-			src="/backgrounds/hero-background-static.svg"
-			alt=""
-		/>
+		<img class="hero__background" src="/backgrounds/hero-background-static.svg" alt="" />
 		<article class="hero__content">
 			<h1 class="hero__title">
 				Одна из многоопциональных компаний муранской области в сфере утилизации отходов
 			</h1>
-			<MainButton
-				client:load
-				text="УТИЛИЗАЦИЯ ОТХОДОВ"
-				href="/"
-			/>
+			<MainButton client:load text="УТИЛИЗАЦИЯ ОТХОДОВ" href="/" />
 		</article>
-		<Scroller targetPage="/" client:visible/>
+		<Scroller targetPage="/search-wastes" client:visible />
 	</section>
 </Layout>

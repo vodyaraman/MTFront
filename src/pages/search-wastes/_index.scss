@@ -1,0 +1,42 @@
+@use '@/styles/Elements.scss' as c;
+@use '@/styles/Common.scss' as *;
+
+.search-wastes-container {
+    height: 100vh;
+    width: 100%;
+    @include flexbox($direction: row);
+    font-family: sans-serif;
+}
+
+.title-container {
+    @include flexbox($direction: row);
+    justify-content: flex-end;
+    margin-bottom: 7rem;
+}
+
+.search-wastes {
+    width: 100%;
+    padding: 2rem;
+    min-height: 80%;
+    display: flex;
+    justify-content: center;
+
+    &__main {
+        width: 60%;
+
+        .search-title {
+            @include c.C-title($text-align: right);
+        }
+
+        .search-info {
+            &__links {
+                margin-top: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+
+            }
+        }
+    }
+}

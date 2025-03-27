@@ -1,0 +1,45 @@
+---
+import Scroller from '../../components/scroller/Scroller';
+import Background from '../../components/wave_background/Background';
+import Layout from '../../layouts/Layout.astro';
+import AnimationWrapper from '../_animation';
+import Socials from '../../components/socials/Socials.astro';
+import SocialLink from '../../assets/icons/SocialLink.astro';
+
+//Стили
+import './_index.scss';
+import MainButton from '../../components/main_button/MainButton';
+---
+
+<Layout>
+  <Socials />
+  <Background client:load />
+  <section class="contacts-layout C-layout">
+    <div class="contacts-container">
+      <div class="contacts">
+        <h2 class="contacts__title">Связаться с нами и получить коммерческое предложение</h2>
+
+        <form class="contacts__callback-form">
+          <input class="C-input contacts-input" name="name" placeholder="Имя" />
+          <input class="C-input contacts-input" name="surname" placeholder="Фамилия" />
+          <input class="C-input contacts-input" name="phone" placeholder="Номер телефона" />
+          <input class="C-input contacts-input" type="email" name="email" placeholder="Почта" />
+          <div class="form-button-container">
+            <MainButton client:load text="Отправить" href="/" />
+          </div>
+        </form>
+        <div class="contacts__contact-info">
+          <p class="contacts__text C-text">Любым удобным способом:</p>
+
+          <div class="contacts__contact-links">
+            <SocialLink href={'#'} iconId="#phone" text="+7-908-177-50-00" />
+            <SocialLink href={'#'} iconId="#email" text="metalltreiding-info@mail.ru" />
+            <SocialLink href={'#'} iconId="#whatsapp" text="+7-908-177-50-00" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <Scroller targetPage="/" client:idle />
+    <AnimationWrapper client:load />
+  </section>
+</Layout>
