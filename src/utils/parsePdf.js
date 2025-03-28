@@ -9,93 +9,92 @@ export async function parsePdf(pdfUrl) {
         const numPages = pdf.numPages;
         let data = [];
 
-        for (let i = 1; i <= 1; i++) {
+        for (let i = 1; i <= numPages; i++) {
             // параметры отбора
-            const targetTextHeight = 9;
-            const codeWidth = 60.68699999999984;
-            const typesArray = ['Транспортирование', 'Утилизация', 'Сбор', 'Обезвреживание'];
-            const dangerClassArray = ['I', 'II', 'III', 'IV', 'V'];
-            //
-
             const page = await pdf.getPage(i);
             const textContent = await page.getTextContent();
             const items = textContent.items;
-
-            // Assume columns are relatively consistent in X positions
-            // Find the approximate X positions for each column
-            const columnPositions = findColumnPositions(items);
-
-            // Group the text items into rows based on their Y positions
-            const rows = groupTextItemsIntoRows(items);
+            const rows = groupRows(items);
 
             for (const row of rows) {
                 const rowData = {
                     name: '',
                     code: '',
-                    type: ''
+                    type: '',
+                    danger: '',
                 };
 
                 for (const item of row) {
-                    const column = determineColumn(item.transform[4], columnPositions); // X position is transform[4]
-                    console.log(column)
-                    switch (column) {
-                        case 0: // Name
+                    const x = item.transform[4];
+                    const k = item.transform[0];
+                    if (x >= 85 && x < 300) {
+                        if (item.str.length > 1) {
                             rowData.name += item.str + ' ';
-                            break;
-                        case 1: // Code
-                            rowData.code += item.str; // Do NOT add space; codes are often split
-                            break;
-                        case 2: // Type
-                            rowData.type += item.str + ' ';
-                            break;
+                        } else {
+                            rowData.name += item.str;
+                        }
+                    }
+                    else if (x >= 300 && x <= 359 && k != 12) {
+                        rowData.code += item.str + ' '
+                    }
+                    else if (x > 359 && x < 440) {
+                        rowData.danger = item.str;
+                    }
+                    else if (x >= 440 && x <= 550) {
+                        rowData.type += item.str
+                    }
+
+                    for (const key in rowData) {
+                        rowData[key] = rowData[key].trim();
                     }
                 }
+                if (rowData.type) {
+                    data.push(rowData);
+                }
+
             }
+
         }
+        console.log(JSON.stringify(data))
     } catch (error) {
         console.error("Error loading PDF:", error);
     }
 }
 
-// Helper function to find approximate column positions
-function findColumnPositions(items) {
+// Функция для определения колонок на основе X координат
+function getColumnPositions(items) {
     const positions = new Set();
     for (const item of items) {
-        positions.add(item.transform[4]); // X position
+        // console.log(item);
+        // console.log(item.transform[4]);
+        if (item.transform[4] >= 101.06 && item.str !== ' ' && item.str !== '' && item.transform[3] !== 11.04 && item.transform[3] !== 9.96) {
+            positions.add(item.transform[4]); // X-координата
+        }
     }
-    return Array.from(positions).sort((a, b) => a - b); // Sorted X positions
+    return Array.from(positions).sort((a, b) => a - b);
 }
 
-// Helper function to group text items into rows based on Y position
-function groupTextItemsIntoRows(items, tolerance = 2) {
+// Функция для группировки элементов в строки на основе Y координат
+function groupRows(items, tolerance = 21) {
     const rows = [];
     let currentRow = [];
     let lastY = null;
 
     for (const item of items) {
-        const currentY = item.transform[5]; // Y position
-
-        if (lastY === null || Math.abs(currentY - lastY) < tolerance) {
-            currentRow.push(item);
-        } else {
-            rows.push(currentRow);
-            currentRow = [item];
+        if (item.transform[4] >= 90 && item.str !== ' ' && item.str !== '' && item.transform[3] !== 11.04 && item.transform[3] !== 9.96) {
+            const y = item.transform[5]; // Y-координата
+            if (lastY === null || Math.abs(y - lastY) <= tolerance) {
+                currentRow.push(item);
+            } else {
+                rows.push(currentRow);
+                currentRow = [item];
+            }
+            lastY = y;
         }
-        lastY = currentY;
     }
 
     if (currentRow.length > 0) {
         rows.push(currentRow);
     }
     return rows;
-}
-
-// Helper function to determine which column an item belongs to
-function determineColumn(xPosition, columnPositions, tolerance = 3) {
-    for (let i = 0; i < columnPositions.length; i++) {
-        if (Math.abs(xPosition - columnPositions[i]) < tolerance) {
-            return i; // Column index
-        }
-    }
-    return -1; // Unknown column
 }

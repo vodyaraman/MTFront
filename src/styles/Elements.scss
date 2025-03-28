@@ -10,6 +10,8 @@
     margin: 0;
 }
 
+$shadow-low: 0, 0, 0, rgba(0, 0, 0, .5);
+
 .C-text {
     color: #fff;
     font-size: 1.7rem;
@@ -47,4 +49,17 @@
     height: 50px;
     fill: currentColor;
     vertical-align: middle;
+}
+
+.C-button {
+    @include no-def-styles();
+    @include classic-borders();
+    @include button-kit();
+    border-color: #e4e4e462;
+    width: fit-content;
+
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }

@@ -1,10 +1,8 @@
 @use '@/styles/Elements.scss' as c;
 @use '@/styles/Common.scss' as *;
 
-.search-wastes-container {
-    height: 100vh;
-    width: 100%;
-    @include flexbox($direction: row);
+.search-wastes-layout {
+    padding: 10rem 0 5rem 0;
     font-family: sans-serif;
 }
 
@@ -16,8 +14,7 @@
 
 .search-wastes {
     width: 100%;
-    padding: 2rem;
-    min-height: 80%;
+    height: 100%;
     display: flex;
     justify-content: center;
 
@@ -29,6 +26,10 @@
         }
 
         .search-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+
             &__links {
                 margin-top: 15px;
                 display: flex;

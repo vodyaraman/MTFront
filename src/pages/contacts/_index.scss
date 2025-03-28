@@ -13,28 +13,17 @@
 }
 
 .contacts {
-    display: grid;
-    row-gap: 5rem;
-    grid-template-columns: 1.5fr 1fr;
-    grid-template-rows: auto auto;
+    display: flex;
+    justify-content: space-between;
+    height: 600px;
 
     &__title {
         @include c.C-title();
+        margin-bottom: 5rem;
     }
 
-    &__callback-form {
-        margin-top: 10rem;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-
-        grid-column: 2;
-        grid-row: 1 / 3;
-        align-self: center;
-    }
-
-    &-input {
-        border-radius: 10px;
+    &__form-side {
+        width: 550px;
     }
 
     &__text {

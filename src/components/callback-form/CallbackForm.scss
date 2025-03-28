@@ -1,0 +1,33 @@
+@use '@/styles/Elements.scss' as c;
+
+.callback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    &__types {
+        margin: 0 auto;
+        display: flex;
+        gap: 2.5rem;
+
+        .callback-type-button {
+            outline: none;
+            border: none;
+            background-color: transparent;
+            color: gray;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+    }
+
+    input {
+        border-radius: 10px;
+    }
+
+    .active-type {
+        color: #fff;
+        font-size: 1.6rem;
+    }
+}
