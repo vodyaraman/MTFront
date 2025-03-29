@@ -1,0 +1,65 @@
+@use '@/styles/Common.scss' as *;
+
+@mixin C-title($text-align: left, $color: white) {
+    @include text-header(calc(2 *(1.5vw + 1vh)), left, 500);
+    @include rubik-font(600);
+    line-height: 5.5rem;
+    width: calc(1.5rem * 33);
+    color: $color;
+    text-align: $text-align;
+    margin: 0;
+}
+
+$shadow-low: 0, 0, 0, rgba(0, 0, 0, .5);
+
+.C-text {
+    color: #fff;
+    font-size: 1.7rem;
+}
+
+.C-input {
+    @include rubik-font(500);
+    padding: 24px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+}
+
+.C-link {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: .3s;
+
+    &:hover {
+        color: rgb(95, 95, 248);
+    }
+}
+
+.C-layout {
+    width: 100%;
+    height: 100vh;
+    padding: 0 14vw;
+    @include flexbox($direction: row);
+    box-sizing: border-box;
+}
+
+.C-icon {
+    width: 50px;
+    height: 50px;
+    fill: currentColor;
+    vertical-align: middle;
+}
+
+.C-button {
+    @include no-def-styles();
+    @include classic-borders();
+    @include button-kit();
+    border-color: #e4e4e462;
+    width: fit-content;
+
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

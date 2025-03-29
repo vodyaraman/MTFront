@@ -1,0 +1,17 @@
+@use '@/styles/Elements.scss' as c;
+
+.search {
+    padding: .5rem;
+    padding-left: 1rem;
+    padding-right: .7rem;
+    background-color: rgba(#eee, 0.2);
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &__input {
+        width: 100%;
+    }
+}

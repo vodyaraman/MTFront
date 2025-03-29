@@ -1,0 +1,43 @@
+---
+interface Props {
+  href: string;
+  text: string;
+  iconId: string;
+}
+
+const { href, iconId, text } = Astro.props;
+---
+
+<!-- Использование спрайта компонентом -->
+<a href={href} class="social-link C-link">
+  <svg class="C-icon">
+    <use href={`${iconId}`}></use>
+  </svg>
+  <p class="C-text">{text}</p>
+</a>
+
+<style>
+  .social-link {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 900;
+    color: #d6d6d6;
+    filter: grayscale(100%);
+    transition: 0.3s;
+
+    p {
+      color: rgba(255, 255, 255, 0.7);
+      transition: 0.3s;
+    }
+  }
+
+  .social-link:hover {
+    filter: grayscale(0);
+  }
+
+  .social-link:hover p {
+    color: #fff;
+  }
+</style>
