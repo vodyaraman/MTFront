@@ -6,7 +6,7 @@ import SearchInput from "../search-input/SearchInput";
 import dataJson from '../../../public/data/data.json';
 
 //Функции
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { debounce } from '../../utils/debounce';
 
 // Типы
@@ -17,36 +17,38 @@ export default function FilteredData() {
     const [filteredData, setFilteredData] = useState<Array<IData>>([]);
     const [inputValue, setInputValue] = useState('');
 
+    const filterData = (query: string) => {
+        const queryWords = query.toLowerCase().split(/\s+/).filter(word => word.length > 0);
+        return data.filter(item => {
+            const searchableText = `${item.name} ${item.code} ${item.type} ${item.danger}`.toLowerCase();
+            return queryWords.every(word => searchableText.includes(word));
+        })
+    }
+
     const handleSearch = useCallback(
         (value: string) => {
+            console.log('Функция handleSearch')
+
             const filtered = value === ""
-                ? [] // Если value пустая строка, возвращаем пустой массив
-                : data.filter(item => { // Иначе фильтруем
-                    return (
-                        item.name.toLowerCase().includes(value) ||
-                        item.code.toLowerCase().includes(value) ||
-                        item.danger.toLowerCase().includes(value) ||
-                        item.type.toLowerCase().includes(value)
-                    );
-                });
+                ? []
+                : filterData(value);
             setFilteredData(filtered);
         },
         [data]
     );
 
-    const debouncedHandleSearch = useCallback(debounce(handleSearch, 300), [handleSearch]);
+    const debouncedHandleSearch = useCallback(debounce(handleSearch, 500), [handleSearch]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setInputValue(value);
         debouncedHandleSearch(value);
     };
-    console.log(filteredData)
-    // ДОДЕЛАТЬ СРАБАТЫВАНИЕ DEBOUNCE НА СТИРАНИЕ СИМВОЛОВ
+
     return (
         <div className="filtered-data">
             <SearchInput inputValue={inputValue} handleChange={handleInputChange} />
-            {filteredData.length && <DataList filteredData={filteredData} />}
+            {filteredData.length > 0 && <DataList filteredData={filteredData} />}
         </div>
     )
 }
