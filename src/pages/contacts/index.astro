@@ -37,7 +37,26 @@ import CallbackForm from '../../components/callback-form/CallbackForm';
         </div>
       </div>
     </div>
-    <Scroller targetPage="/" client:idle />
+    <Scroller
+			pages={[
+				{
+					title: "Главная",
+					href: "/",
+					image: "/src/assets/images/main-page-icon.png",
+				},
+				{
+					title: "Услуги",
+					href: "/about",
+					image: "/src/assets/images/main-page-icon.png",
+				},
+				{
+					title: "Контакты",
+					href: "/contacts",
+					image: "/src/assets/images/main-page-icon.png",
+				},
+			]}
+			client:load
+		/>
     <AnimationWrapper client:load />
   </section>
 </Layout>

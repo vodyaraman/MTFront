@@ -9,7 +9,7 @@
     @include button-kit();
 
     &__text {
-        @include roboto-text(center);
+        @include helvetica-text(center);
         z-index: 2;
         position: relative;
         text-transform: uppercase;    

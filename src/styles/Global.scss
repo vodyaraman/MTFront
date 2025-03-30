@@ -1,12 +1,5 @@
 @use "@/styles/Common.scss" as *;
-
-// Переменные для брейкпоинтов
-$breakpoints: (
-  large-desktop: 1920px,
-  medium-desktop: 1381px,
-  small-desktop: 1001px,
-  phone: 420px
-);
+@use "@/styles/Variables.scss" as *;
 
 // Миксин для управления размером шрифта
 @mixin font-size($min-width: null, $max-width: null, $size: null) {
@@ -97,12 +90,18 @@ ul {
 
 @font-face {
   font-family: "RobotoCondensed";
-  src: url("@/assets/fonts/Roboto_Condensed/static/RobotoCondensed-VariableFont_wght.ttf") format("truetype");
+  src: url("@/assets/fonts/roboto/RobotoCondensed-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Helvetica";
+  src: url("@/assets/fonts/helvetica/Helvetica.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 // Размеры шрифта для разных устройств
 @include font-size($min-width: map-get($breakpoints, large-desktop), $size: 14px);

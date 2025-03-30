@@ -1,45 +1,76 @@
-@use "@/styles/Common.scss" as *;
-
 .scroller {
     position: fixed;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
     pointer-events: none;
-    transition: opacity 0.5s ease-in-out;
+    z-index: 11;
 
-    &.visible {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .scroller-text {
+    .scroller-overlay {
         @include flexbox(column);
-        font-size: 18px;
-        padding: 10px 20px;
-        border-radius: 20px;
-        text-align: center;
-        white-space: nowrap;
-        transform-origin: center;
-        opacity: 0;
+        @include full-parent;
+        gap: 5vh;
+        padding: 5vh 0;
+        transform: translateY(500px);
+        background-color: #00000057;
+        backdrop-filter: blur(3px);
 
-        &__link {
-            @include no-def-styles();
-            color: #dfdfdfbe;
-
-            &:hover {
-                color: #dfdfdfef;
-            }
+        .scroller-overlay__title {
+            @include wadik-text(center);
+            width: 100%;
+            font-size: calc(0.75 * (1vh + 1vw));
+            color: $secondary-font-color;
         }
 
-        .scroller-background {
-            position: absolute;
-            border-radius: 50px;
-            background: radial-gradient(to center, #dfdfdf25, #dfdfdfbe);
-            width: 100px;
-            height: 100px;
-            z-index: 2;
+        .scroller-overlay__grid {
+            @include flexbox(row);
+            @include full-parent;
+            gap: 1.5rem;
+
+            .scroller-overlay__item {
+                @include no-def-styles;
+                @include flexbox(column);
+                width: calc(12.5 * (1vh + 1vw));
+                height: calc(12.5 * (1vh + 1vw));
+                filter: invert(0.75);
+                will-change: filter;
+                transition: filter 0.5s ease;
+
+                &:hover {
+                    filter: invert(0);
+
+                    .image-wrapper {
+                        img {
+                            scale: 1.1
+                        }
+                    }     
+                }
+
+                .image-wrapper {
+                    @include full-parent;
+                    border-radius: 25px;
+                    border: $primary-border;
+                    box-shadow: $inset-shadow;
+                    overflow: hidden;
+
+                    img {
+                        @include full-parent;
+                        will-change: scale;
+                        scale: 1;
+                        object-fit: cover;
+                        transition: scale 0.75s ease;
+                    }
+                }
+
+                span {
+                    @include roboto-text(center);
+                    width: 100%;
+                    font-size: calc(0.75 * (1vh + 1vw));
+                    color: $secondary-font-color;
+                    text-transform: uppercase;
+                }
+            }
         }
     }
 }

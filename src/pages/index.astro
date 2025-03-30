@@ -25,19 +25,40 @@ import Background from "../components/wave_background/Background";
 		/>
 		<article class="hero__content">
 			<Logo client:visible transition:persist />
-			<h1 class="hero__title">
-				Комплексная утилизация отходов
-			</h1>
+			<h1 class="hero__title">Комплексная утилизация отходов</h1>
 			<p class="hero__subtitle">
-				Мы — экологическая компания полного цикла, охватывающая все этапы управления отходами: от их сбора и вывоза до глубокой переработки, реализации вторичных материальных ресурсов и захоронения неутильных компонентов.
+				Мы — экологическая компания полного цикла, охватывающая все
+				этапы управления отходами: от их сбора и вывоза до глубокой
+				переработки, реализации вторичных материальных ресурсов и
+				захоронения неутильных компонентов.
 			</p>
 			<MainButton client:load text="УТИЛИЗАЦИЯ ОТХОДОВ" href="/about" />
 		</article>
 		<div class="hero__showcase">
 			<GlobeWrapper client:load />
 		</div>
-		<Scroller targetPage="/about" client:idle />
-		<AnimationWrapper client:load/>
+		<Scroller
+			pages={[
+				{
+					title: "Главная",
+					href: "/",
+					image: "/src/assets/images/main-page-icon.png",
+				},
+				{
+					title: "Услуги",
+					href: "/about",
+					image: "/src/assets/images/main-page-icon.png",
+				},
+				{
+					title: "Контакты",
+					href: "/contacts",
+					image: "/src/assets/images/main-page-icon.png",
+				},
+			]}
+			client:load
+		/>
+
+		<AnimationWrapper client:load />
 	</section>
 </Layout>
 

@@ -28,7 +28,6 @@ export default defineConfig({
           includePaths: [srcPath],
           additionalData: `
             @use "@/styles/Common.scss" as *;
-            @use "@/styles/Global.scss";
             @use "@/styles/Variables.scss" as *;
             @use "@/styles/Elements.scss" as *;
           `,
