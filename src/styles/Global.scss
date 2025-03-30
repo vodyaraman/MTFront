@@ -88,24 +88,19 @@ ul {
 }
 
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/Unbounded/Unbounded-Regular.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'Wadik';
+  src: url('@/assets/fonts/wadik/Wadik.otf') format('opentype');
+  font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/Unbounded/Unbounded-Bold.ttf') format('truetype');
-  font-weight: 700;
+  font-family: "RobotoCondensed";
+  src: url("@/assets/fonts/Roboto_Condensed/static/RobotoCondensed-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
   font-style: normal;
-}
-
-@font-face {
-  font-family: 'Oswald';
-  src: url('/fonts/Oswald/Oswald-Regular.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
+  font-display: swap;
 }
 
 

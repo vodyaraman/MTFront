@@ -1,3 +1,5 @@
+@use "./Variables.scss" as *;
+
 @mixin flexbox($direction) {
     position: relative;
     display: flex;
@@ -54,10 +56,22 @@
     background-color: transparent;
 }
 
-@mixin text-header($font-size, $text-align, $font-weight) {
-    font-size: $font-size;
-    text-align: $text-align;
-    font-weight: $font-weight;
-    background-color: transparent;
-    width: 100%;
+@mixin wadik-text($align: left) {
+    font-family: "Wadik", serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: calc(2.2 * (1vh + 1vw));
+    color: $primary-font-color;
+    text-align: $align;
+    letter-spacing: 0.01em;
 }
+
+@mixin roboto-text($align: left) {
+    font-family: "RobotoCondensed", serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.35rem;
+    color: $primary-font-color;
+    text-align: $align;
+    letter-spacing: 0.01em;
+  }

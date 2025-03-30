@@ -22,16 +22,21 @@
 
     &__showcase {
         @include flexbox(column);
+        position: absolute;
+        bottom: calc(-10 * (1vh + 1vw));
+        right: -15vw;
+
         opacity: 0;
     }
 
     &__content {
         @include flexbox(column);
         align-items: flex-start;
-        gap: calc(1.5vw);
+        gap: calc(1.5vw + 0.5vh);
         text-align: left;
         max-width: 40vw;
         opacity: 0;
+        z-index: 2;
 
         .logo {
             left: 0;
@@ -39,12 +44,20 @@
     }
 
     &__title {
+        @include wadik-text(left);
         @include no-padding();
-        @include text-header(calc(2 *(1.5vw + 1vh)), left, 500);
-        @include rubik-font(500);
-        line-height: calc(2.2 *(1.5vw + 1vh));
+        line-height: calc(2.25 * (1vw + 1vh));
         width: fit-content;
-        color: white;
+        text-shadow: $text-shadow;
+        color: $primary-font-color;
+    }
+
+    &__subtitle {
+        @include roboto-text(left);
+        line-height: 1.5rem;
+        color: $secondary-font-color;
+        text-shadow: $text-shadow;
+        width: 80%;
     }
 
     &__nav {

@@ -10,11 +10,10 @@ import Background from "../components/wave_background/Background";
 ---
 
 <Layout>
-	<Background client:load/>
 	<section class="hero">
 		<img
 			class="hero__background static"
-			src="/backgrounds/hero-background-static.svg"
+			src="/backgrounds/hero-background.svg"
 			alt=""
 			transition:persist
 		/>
@@ -27,8 +26,11 @@ import Background from "../components/wave_background/Background";
 		<article class="hero__content">
 			<Logo client:visible transition:persist />
 			<h1 class="hero__title">
-				Мы создаем лучшие условия для экологии и бизнеса
+				Комплексная утилизация отходов
 			</h1>
+			<p class="hero__subtitle">
+				Мы — экологическая компания полного цикла, охватывающая все этапы управления отходами: от их сбора и вывоза до глубокой переработки, реализации вторичных материальных ресурсов и захоронения неутильных компонентов.
+			</p>
 			<MainButton client:load text="УТИЛИЗАЦИЯ ОТХОДОВ" href="/about" />
 		</article>
 		<div class="hero__showcase">
