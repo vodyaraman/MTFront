@@ -4,7 +4,10 @@ import './FilteredData.scss';
 import DataList from "../data-list/DataList";
 import SearchInput from "../search-input/SearchInput";
 import dataJson from '../../../public/data/data.json';
+
+//Функции
 import { useState, useCallback } from 'react';
+import { debounce } from '../../utils/debounce';
 
 // Типы
 import type { IData } from '../../types/types';
@@ -13,20 +16,6 @@ export default function FilteredData() {
     const data = dataJson as Array<IData>;
     const [filteredData, setFilteredData] = useState<Array<IData>>([]);
     const [inputValue, setInputValue] = useState('');
-
-    // Debounce функция
-    const debounce = <F extends (...args: any[]) => any>(
-        func: F,
-        delay: number
-    ) => {
-        let timeout: NodeJS.Timeout | undefined;
-        return function (...args: Parameters<F>): void {
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-            timeout = setTimeout(() => func(...args), delay);
-        };
-    };
 
     const handleSearch = useCallback(
         (value: string) => {

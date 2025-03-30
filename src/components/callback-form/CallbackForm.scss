@@ -22,12 +22,38 @@
         }
     }
 
+    &__contact-method {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        font-size: 1.2rem;
+        color: #fff;
+
+        .methods-list {
+            border-radius: 10px;
+            width: 100%;
+        }
+    }
+
     input {
         border-radius: 10px;
     }
 
     .active-type {
         color: #fff;
-        font-size: 1.6rem;
+        font-size: 1.3rem;
+    }
+
+    .error-input {
+        outline: 2px solid rgb(169, 38, 38);
+
+        &::placeholder {
+            color: rgb(169, 38, 38);
+        }
+    }
+
+    .error-select {
+        outline: 2px solid rgb(169, 38, 38);
     }
 }

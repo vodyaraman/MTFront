@@ -8,7 +8,6 @@ import SocialLink from '../../assets/icons/SocialLink.astro';
 
 //Стили
 import './_index.scss';
-import MainButton from '../../components/main_button/MainButton';
 import CallbackForm from '../../components/callback-form/CallbackForm';
 ---
 
@@ -33,7 +32,7 @@ import CallbackForm from '../../components/callback-form/CallbackForm';
         </div>
 
         <div class="contacts__form-side">
-          <CallbackForm client:load />
+          <CallbackForm client:only />
         </div>
       </div>
     </div>
