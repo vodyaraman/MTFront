@@ -73,6 +73,7 @@ export default function CallbackForm() {
         const selectedMethod = e.target.value as 'email' | 'phone';
         setSelectedContactMethod(selectedMethod);
         setErrorFields([]);
+        setContactValue('');
     }
 
     const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>, formValues: IndividualDataType | LegalDataType) => {

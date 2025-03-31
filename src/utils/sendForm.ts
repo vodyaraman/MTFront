@@ -6,9 +6,24 @@ export async function sendForm(formData: ResultFormValue) {
     const chatId = import.meta.env.PUBLIC_VITE_TELEGRAM_CHAT_ID;
     const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
-    console.log(botToken, chatId)
+    let messageText = '';
 
-    const msgQuery = Object.entries(formData).map(([key, value]) => `${key}: ${value}`).join('\n');
+    if ('inn' in formData) {
+
+        messageText = `
+        📌 Новая заявка 📌\n\n
+        🪪 ИНН: ${formData.inn.value}\n
+        📋 Должность: ${formData.position.value}\n
+        👤 Имя: ${formData.name.value}\n
+        👤 Фамилия: ${formData.surname.value}\n
+        ${'phone' in formData ? `📞 Телефон: ${formData.phone.value}\n` : `📩 Почта: ${formData.email.value}\n`}`
+    } else {
+        messageText = `
+        📌 Новая заявка 📌\n\n
+        👤 Имя: ${formData.name.value}\n
+        👤 Фамилия: ${formData.surname.value}\n
+        ${'phone' in formData ? `📞 Телефон: ${formData.phone.value}\n` : `📩 Почта: ${formData.email.value}\n`}`
+    }
 
     try {
         const response = await fetch(apiUrl, {
@@ -18,7 +33,7 @@ export async function sendForm(formData: ResultFormValue) {
             },
             body: JSON.stringify({
                 chat_id: chatId,
-                text: msgQuery,
+                text: messageText,
             }),
         })
 
