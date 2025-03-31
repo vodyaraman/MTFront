@@ -1,0 +1,21 @@
+.header {
+    @include flexbox(column);
+    position: absolute;
+    width: 72vw;
+    height: 15vh;
+    top: -20vh;
+    left: 0;
+
+    &__nav {
+        @include flexbox(row);
+        @include full-parent;
+        justify-content: space-between;
+    }
+  
+    &__link {
+        @include roboto-text(center);
+        font-size: 1.5rem;
+        text-shadow: $text-shadow;
+    }
+  }
+  

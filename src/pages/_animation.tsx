@@ -10,6 +10,7 @@ export default function AnimationWrapper() {
 
     const tl = gsap.timeline({ delay: 1.2, defaults: { ease: "power3.out" } });
 
+    tl.from(".hero__background", { backdropFilter: "blur(12px)", duration: 0.33 }, "-=0.5");
     tl.from(".logo, .hero__title", { x: 200, duration: 0.8 }, "-=0.5");
     tl.from(".hero__subtitle", { opacity: 0, y: 30, duration: 0.8 }, "-=0.6");
     tl.from(".button-wrapper", { opacity: 0, y: 30, duration: 0.8 }, "-=0.25");

@@ -7,6 +7,7 @@ import GlobeWrapper from "../components/globe-icon/GlobeWrapper";
 import Scroller from "../components/scroller/Scroller";
 import AnimationWrapper from "./_animation";
 import Background from "../components/wave_background/Background";
+import Header from "@/components/header/Header";
 ---
 
 <Layout>
@@ -24,6 +25,7 @@ import Background from "../components/wave_background/Background";
 			transition:persist
 		/>
 		<article class="hero__content">
+			{/*<Header client:idle/>*/}
 			<Logo client:visible transition:persist />
 			<h1 class="hero__title">Комплексная утилизация отходов</h1>
 			<p class="hero__subtitle">
