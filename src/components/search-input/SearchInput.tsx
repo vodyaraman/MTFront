@@ -13,7 +13,7 @@ export default function SearchInput({ inputValue, handleChange }: Props) {
 
     return (
         <div className="search">
-            <SearchIcon />
+            <SearchIcon className='search__icon' />
             <input
                 className="search__input C-input"
                 type="search"
