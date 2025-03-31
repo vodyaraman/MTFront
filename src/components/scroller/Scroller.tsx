@@ -14,26 +14,75 @@ interface ScrollerProps {
 
 export default function Scroller({ pages }: ScrollerProps) {
     const scrollerRef = useRef<HTMLDivElement>(null);
-    const overlayRef = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-    const lastTriggerTime = useRef(0);
+    const titleRef = useRef<HTMLParagraphElement>(null);
+    const [isTitleVisible, setIsTitleVisible] = useState(false);
+    const [canTrigger, setCanTrigger] = useState(false);
     const touchStartY = useRef(0);
 
     const resetScroller = () => {
-        setIsVisible(false);
+        setIsTitleVisible(false);
+        setCanTrigger(false);
     };
 
     useEffect(() => {
-        const handleTrigger = () => {
-            const now = Date.now();
-            if (now - lastTriggerTime.current < 700) return;
-            lastTriggerTime.current = now;
+        let frameId: number;
 
-            if (!isVisible) {
-                setIsVisible(true);
+        const checkVisibility = () => {
+            const scroller = scrollerRef.current;
+            const title = titleRef.current;
+            if (!scroller || !title) return;
+
+            const rect = scroller.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            const isBottomVisible =
+                rect.bottom <= windowHeight && rect.bottom >= windowHeight - 100;
+
+            if (isBottomVisible) {
+                if (!isTitleVisible) {
+                    setIsTitleVisible(true);
+                    setCanTrigger(false);
+                    setTimeout(() => setCanTrigger(true), 1000);
+                }
             } else {
-                window.location.href = pages[0].href;
+                if (isTitleVisible) resetScroller();
             }
+
+            frameId = requestAnimationFrame(checkVisibility);
+        };
+
+        frameId = requestAnimationFrame(checkVisibility);
+        return () => cancelAnimationFrame(frameId);
+    }, [isTitleVisible]);
+
+    useEffect(() => {
+        const title = titleRef.current;
+        if (!title) return;
+
+        gsap.killTweensOf(title);
+
+        if (isTitleVisible) {
+            gsap.to(title, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power3.out"
+            });
+        } else {
+            gsap.to(title, {
+                opacity: 0,
+                y: 20,
+                duration: 0.3,
+                ease: "power3.in"
+            });
+        }
+    }, [isTitleVisible]);
+
+    useEffect(() => {
+        const handleTrigger = () => {
+            if (!isTitleVisible || !canTrigger) return;
+
+             window.location.href = pages[0].href;
         };
 
         const handleWheel = (event: WheelEvent) => {
@@ -66,37 +115,12 @@ export default function Scroller({ pages }: ScrollerProps) {
             window.removeEventListener("touchstart", handleTouchStart);
             window.removeEventListener("touchmove", handleTouchMove);
         };
-    }, [isVisible, pages]);
-
-    useEffect(() => {
-        const target = overlayRef.current;
-        if (!target) return;
-    
-        gsap.killTweensOf(target);
-    
-        if (isVisible) {
-            gsap.to(target, {
-                y: 0,
-                opacity: 1,
-                duration: 0.25,
-                ease: "power2.in",
-                pointerEvents: "auto"
-            });
-        } else {
-            gsap.to(target, {
-                y: 500,
-                opacity: 0,
-                duration: 0.75,
-                ease: "power2.out",
-                pointerEvents: "none"
-            });
-        }
-    }, [isVisible]);    
+    }, [isTitleVisible, canTrigger]);
 
     return (
         <div ref={scrollerRef} className="scroller">
-            <div ref={overlayRef} className="scroller-overlay">
-                <p className="scroller-overlay__title">
+            <div className="scroller-overlay">
+                <p ref={titleRef} className="scroller-overlay__title">
                     Прокрутите вниз ещё раз, чтобы узнать о нас подробнее
                 </p>
                 <div className="scroller-overlay__grid">

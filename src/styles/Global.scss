@@ -49,6 +49,7 @@ body {
 
 main {
   @include flexbox(column);
+  overflow-x: hidden;
   height: 100%;
 }
 

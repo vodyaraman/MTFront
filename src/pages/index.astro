@@ -32,34 +32,40 @@ import Background from "../components/wave_background/Background";
 				переработки, реализации вторичных материальных ресурсов и
 				захоронения неутильных компонентов.
 			</p>
-			<MainButton client:load text="УТИЛИЗАЦИЯ ОТХОДОВ" href="/about" />
+			<div class="button-wrapper">
+				<MainButton
+					client:load
+					text="УТИЛИЗАЦИЯ ОТХОДОВ"
+					href="/about"
+				/>
+			</div>
 		</article>
 		<div class="hero__showcase">
 			<GlobeWrapper client:load />
 		</div>
 	</section>
 	<Scroller
-			pages={[
-				{
-					title: "Главная",
-					href: "/",
-					image: "/images/main-page-og.png",
-				},
-				{
-					title: "Услуги",
-					href: "/about",
-					image: "/images/main-page-og.png",
-				},
-				{
-					title: "Контакты",
-					href: "/contacts",
-					image: "/images/main-page-og.png",
-				},
-			]}
-			client:idle
-		/>
+		pages={[
+			{
+				title: "Главная",
+				href: "/",
+				image: "/images/main-page-og.png",
+			},
+			{
+				title: "Услуги",
+				href: "/about",
+				image: "/images/main-page-og.png",
+			},
+			{
+				title: "Контакты",
+				href: "/contacts",
+				image: "/images/main-page-og.png",
+			},
+		]}
+		client:idle
+	/>
 
-		<AnimationWrapper client:load />
+	<AnimationWrapper client:load />
 </Layout>
 
 {

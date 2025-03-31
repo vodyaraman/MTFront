@@ -8,12 +8,12 @@
     padding: 0 14vw;
     width: 100vw;
     height: 100vh;
-    position: relative;
     box-sizing: border-box;
     overflow: hidden;
 
     &__background {
         @include absolute-fw();
+        position: fixed;
         z-index: -1;
         object-fit: cover;
 
