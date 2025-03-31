@@ -4,12 +4,17 @@ import clsx from 'clsx';
 import './CallbackForm.scss';
 
 // Типы
-import type { IndividualDataType, LegalDataType, ValidationErrors } from '../../types/types';
+import type { IndividualDataType, LegalDataType, MessageBot, ResultFormValue, ValidationErrors } from '../../types/types';
 import { validateForm } from "../../utils/validateInput";
+import { sendForm } from "@/utils/sendForm";
 
 export default function CallbackForm() {
     const [formType, setFormType] = useState<'individual' | 'legal'>('individual')
     const [errorFields, setErrorFields] = useState<Array<string>>([]);
+    const [messageInfo, setMessageInfo] = useState<MessageBot>({
+        isSending: false,
+        sendMessageStatus: false,
+    })
 
     const [selectedContactMethod, setSelectedContactMethod] = useState<'phone' | 'email' | null>(null);
     const [contactValue, setContactValue] = useState('');
@@ -70,7 +75,7 @@ export default function CallbackForm() {
         setErrorFields([]);
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLButtonElement>, formValues: IndividualDataType | LegalDataType) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>, formValues: IndividualDataType | LegalDataType) => {
         e.preventDefault();
 
         let validationResults: ValidationErrors;
@@ -80,7 +85,7 @@ export default function CallbackForm() {
             return;
         }
 
-        const updatedFormValues = {
+        const updatedFormValues: ResultFormValue = {
             ...formValues,
             [selectedContactMethod as 'email' | 'phone']: {
                 value: contactValue,
@@ -95,7 +100,18 @@ export default function CallbackForm() {
             return;
         }
 
-        return alert('Ваша заявка отправлена! Ожидайте обратной связи!');
+        setMessageInfo({
+            ...messageInfo,
+            isSending: true,
+        })
+        const res = await sendForm(updatedFormValues);
+        if (res.status) {
+            console.log(res)
+            return alert('Ваша заявка отправлена! Ожидайте обратной связи!');
+        } else {
+            console.log(res)
+            return alert('Ошибка отправки формы');
+        }
     }
 
     return (

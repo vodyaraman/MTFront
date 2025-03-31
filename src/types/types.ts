@@ -23,7 +23,22 @@ export interface LegalDataType {
     surname: IFormValue;
 }
 
+export interface PhoneContactMethod {
+    phone: IFormValue,
+}
+
+export interface MailContactMethod {
+    email?: IFormValue,
+}
+
+export type ResultFormValue = (LegalDataType & PhoneContactMethod) | (LegalDataType & MailContactMethod) | (IndividualDataType & PhoneContactMethod) | (IndividualDataType & MailContactMethod)
+
 export interface ValidationErrors {
     errorFields: Array<string>,
     isValidate: boolean,
+}
+
+export interface MessageBot {
+    isSending: boolean,
+    sendMessageStatus: boolean,
 }
