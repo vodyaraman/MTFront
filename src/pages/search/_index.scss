@@ -2,8 +2,9 @@
 @use '@/styles/Common.scss' as *;
 
 .search-wastes-layout {
-    padding: 10rem 0 5rem 0;
+    padding: 8rem 0 5rem 0;
     font-family: sans-serif;
+    overflow-y: scroll;
 }
 
 .title-container {

@@ -1,12 +1,13 @@
 // Стили
 import './FilteredData.scss';
 
+import ArrowIcon from '@/assets/icons/arrow-icon';
 import DataList from "../data-list/DataList";
 import SearchInput from "../search-input/SearchInput";
-import dataJson from '../../../public/data/data.json';
+import dataJson from '/public/data/data.json';
 
 //Функции
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { debounce } from '../../utils/debounce';
 
 // Типы
@@ -14,8 +15,11 @@ import type { IData } from '../../types/types';
 
 export default function FilteredData() {
     const data = dataJson as Array<IData>;
+
     const [filteredData, setFilteredData] = useState<Array<IData>>([]);
     const [inputValue, setInputValue] = useState('');
+    const [isExpanded, setIsExpanded] = useState(false);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const filterData = (query: string) => {
         const queryWords = query.toLowerCase().split(/\s+/).filter(word => word.length > 0);
@@ -27,12 +31,19 @@ export default function FilteredData() {
 
     const handleSearch = useCallback(
         (value: string) => {
-            console.log('Функция handleSearch')
-
             const filtered = value === ""
                 ? []
                 : filterData(value);
             setFilteredData(filtered);
+            setIsExpanded(true);
+
+            if (inputRef.current) {
+                window.scrollTo({
+                    top: 480,
+                });
+            } else {
+                setIsExpanded(false);
+            }
         },
         [data]
     );
@@ -45,10 +56,18 @@ export default function FilteredData() {
         debouncedHandleSearch(value);
     };
 
+    const handleScrollToTop = () => {
+        window.scrollTo({ top: 0 });
+    };
+
     return (
         <div className="filtered-data">
-            <SearchInput inputValue={inputValue} handleChange={handleInputChange} />
-            {filteredData.length > 0 && <DataList filteredData={filteredData} />}
+            {isExpanded && <ArrowIcon onClick={handleScrollToTop} />}
+            <SearchInput ref={inputRef} inputValue={inputValue} handleChange={handleInputChange} />
+            {filteredData.length > 0 && (
+                <DataList filteredData={filteredData} />
+            )}
+
         </div>
     )
 }
