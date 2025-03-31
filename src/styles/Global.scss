@@ -34,6 +34,10 @@
   }
 }
 
+:root {
+  --index: 1.5vw + 1vh;
+}
+
 // Общие стили
 body {
   @include no-padding();

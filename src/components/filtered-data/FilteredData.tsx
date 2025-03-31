@@ -1,63 +1,73 @@
 // Стили
 import './FilteredData.scss';
 
+import ArrowIcon from '@/assets/icons/arrow-icon';
 import DataList from "../data-list/DataList";
 import SearchInput from "../search-input/SearchInput";
-import dataJson from '../../../public/data/data.json';
-import { useState, useCallback } from 'react';
+import dataJson from '/public/data/data.json';
+
+//Функции
+import { useState, useCallback, useEffect, useRef } from 'react';
+import { debounce } from '../../utils/debounce';
 
 // Типы
 import type { IData } from '../../types/types';
 
 export default function FilteredData() {
     const data = dataJson as Array<IData>;
+
     const [filteredData, setFilteredData] = useState<Array<IData>>([]);
     const [inputValue, setInputValue] = useState('');
+    const [isExpanded, setIsExpanded] = useState(false);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
-    // Debounce функция
-    const debounce = <F extends (...args: any[]) => any>(
-        func: F,
-        delay: number
-    ) => {
-        let timeout: NodeJS.Timeout | undefined;
-        return function (...args: Parameters<F>): void {
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-            timeout = setTimeout(() => func(...args), delay);
-        };
-    };
+    const filterData = (query: string) => {
+        const queryWords = query.toLowerCase().split(/\s+/).filter(word => word.length > 0);
+        return data.filter(item => {
+            const searchableText = `${item.name} ${item.code} ${item.type} ${item.danger}`.toLowerCase();
+            return queryWords.every(word => searchableText.includes(word));
+        })
+    }
 
     const handleSearch = useCallback(
         (value: string) => {
             const filtered = value === ""
-                ? [] // Если value пустая строка, возвращаем пустой массив
-                : data.filter(item => { // Иначе фильтруем
-                    return (
-                        item.name.toLowerCase().includes(value) ||
-                        item.code.toLowerCase().includes(value) ||
-                        item.danger.toLowerCase().includes(value) ||
-                        item.type.toLowerCase().includes(value)
-                    );
-                });
+                ? []
+                : filterData(value);
             setFilteredData(filtered);
+            setIsExpanded(true);
+
+            if (inputRef.current) {
+                window.scrollTo({
+                    top: 480,
+                });
+            } else {
+                setIsExpanded(false);
+            }
         },
         [data]
     );
 
-    const debouncedHandleSearch = useCallback(debounce(handleSearch, 300), [handleSearch]);
+    const debouncedHandleSearch = useCallback(debounce(handleSearch, 500), [handleSearch]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setInputValue(value);
         debouncedHandleSearch(value);
     };
-    console.log(filteredData)
-    // ДОДЕЛАТЬ СРАБАТЫВАНИЕ DEBOUNCE НА СТИРАНИЕ СИМВОЛОВ
+
+    const handleScrollToTop = () => {
+        window.scrollTo({ top: 0 });
+    };
+
     return (
         <div className="filtered-data">
-            <SearchInput inputValue={inputValue} handleChange={handleInputChange} />
-            {filteredData.length && <DataList filteredData={filteredData} />}
+            {isExpanded && <ArrowIcon onClick={handleScrollToTop} />}
+            <SearchInput ref={inputRef} inputValue={inputValue} handleChange={handleInputChange} />
+            {filteredData.length > 0 && (
+                <DataList filteredData={filteredData} />
+            )}
+
         </div>
     )
 }

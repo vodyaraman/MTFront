@@ -1,4 +1,5 @@
 @use '@/styles/Elements.scss' as c;
+@use '@/styles/Variables.scss' as *;
 
 .callback-form {
     display: flex;
@@ -22,12 +23,71 @@
         }
     }
 
+    &__contact-method {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        font-size: 1.2rem;
+        color: #fff;
+
+        .methods-list {
+            border-radius: 10px;
+            width: 100%;
+        }
+    }
+
     input {
         border-radius: 10px;
     }
 
     .active-type {
         color: #fff;
-        font-size: 1.6rem;
+        font-size: 1.7rem;
     }
+
+    .error-input {
+        outline: 2px solid rgb(169, 38, 38);
+
+        &::placeholder {
+            color: rgb(169, 38, 38);
+        }
+    }
+
+    .error-select {
+        outline: 2px solid rgb(169, 38, 38);
+    }
+}
+
+@each $breakpoint, $value in $breakpoints {
+    @media (max-width: $value) {
+        .callback-form {
+            @if $breakpoint ==small-desktop {
+                &__types {
+                    .callback-type-button {
+                        font-size: .85rem;
+                    }
+
+                    .active-type {
+                        font-size: 1rem;
+                    }
+                }
+
+            }
+
+            @if $breakpoint ==phone {
+                &__types {
+                    .callback-type-button {
+                        font-size: .5rem;
+                    }
+
+                    .active-type {
+                        font-size: .7rem;
+                    }
+                }
+            }
+        }
+
+    }
+
 }

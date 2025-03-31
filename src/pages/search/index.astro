@@ -1,0 +1,34 @@
+---
+import Scroller from '../../components/scroller/Scroller';
+import Background from '../../components/wave_background/Background';
+import Layout from '../../layouts/Layout.astro';
+import AnimationWrapper from '../_animation';
+import FilteredData from '../../components/filtered-data/FilteredData';
+
+//Стили
+import './_index.scss';
+---
+
+<Layout>
+  <Background client:load />
+  <section class="search-wastes-layout C-layout">
+    <div class="search-wastes">
+      <div class="search-wastes__main">
+        <div class="title-container">
+          <h2 class="search-title">Выберите нужный тип отходов</h2>
+        </div>
+
+        <div class="search-info">
+          <div class="search-info__links">
+            <a href="/contacts" class="call-us-link C-link">Связаться с нами</a>
+            <a href="/docs/license.pdf" target="_blank" class="license-link C-link"
+              >Просмотреть лицензию</a
+            >
+          </div>
+
+          <FilteredData client:load />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,8 +1,10 @@
 @use '@/styles/Common.scss' as *;
+@use '@/styles/Variables.scss' as *;
 
 @mixin C-title($text-align: left, $color: white) {
-    @include rubik-font(600);
-    line-height: 5.5rem;
+    @include rubik-font(900);
+    font-size: calc(1.8 * var(--index));
+    line-height: calc(2.5 * var(--index));
     width: calc(1.5rem * 33);
     color: $color;
     text-align: $text-align;
@@ -13,7 +15,7 @@ $shadow-low: 0, 0, 0, rgba(0, 0, 0, .5);
 
 .C-text {
     color: #fff;
-    font-size: 1.7rem;
+    font-size: calc(var(--index) / 35);
 }
 
 .C-input {
@@ -22,12 +24,12 @@ $shadow-low: 0, 0, 0, rgba(0, 0, 0, .5);
     border-radius: 25px;
     border: none;
     outline: none;
-    font-size: 1.4rem;
+    font-size: calc(0.3 * var(--index));
 }
 
 .C-link {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: calc(0.35 * var(--index));
     transition: .3s;
 
     &:hover {
@@ -44,8 +46,8 @@ $shadow-low: 0, 0, 0, rgba(0, 0, 0, .5);
 }
 
 .C-icon {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     fill: currentColor;
     vertical-align: middle;
 }
@@ -61,4 +63,32 @@ $shadow-low: 0, 0, 0, rgba(0, 0, 0, .5);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-size: calc(var(--index) * .1);
+}
+
+@each $breakpoint, $value in $breakpoints {
+    @media (max-width: $value) {
+        .C-input {
+            @if $breakpoint ==small-desktop {
+                padding: 20px;
+            }
+
+            @if $breakpoint ==phone {
+                padding: 5px;
+                padding-left: 10px;
+            }
+        }
+
+        .C-icon {
+            @if $breakpoint ==small-desktop {
+                width: 30px;
+                height: 30px;
+            }
+
+            @if $breakpoint ==phone {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
 }

@@ -1,7 +1,8 @@
 @use '@/styles/Elements.scss' as c;
+@use '@/styles/Global.scss' as *;
 
 .search {
-    padding: .5rem;
+    padding: 8px;
     padding-left: 1rem;
     padding-right: .7rem;
     background-color: rgba(#eee, 0.2);
@@ -13,5 +14,34 @@
 
     &__input {
         width: 100%;
+    }
+}
+
+@each $breakpoint, $value in $breakpoints {
+    @media (max-width: $value) {
+        .search {
+            @if $breakpoint ==small-desktop {
+                padding: 6px;
+            }
+
+            @if $breakpoint ==phone {
+                padding: 4px;
+                padding-left: 5px;
+            }
+
+            &__icon {
+                @if $breakpoint ==small-desktop {
+                    width: 35px;
+                    height: 35px;
+                }
+
+                @if $breakpoint ==phone {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+
+
     }
 }

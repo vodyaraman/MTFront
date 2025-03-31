@@ -28,11 +28,7 @@ export async function parsePdf(pdfUrl) {
                     const x = item.transform[4];
                     const k = item.transform[0];
                     if (x >= 85 && x < 300) {
-                        if (item.str.length > 1) {
-                            rowData.name += item.str + ' ';
-                        } else {
-                            rowData.name += item.str;
-                        }
+                        rowData.name += ' ' + item.str + ' ';
                     }
                     else if (x >= 300 && x <= 359 && k != 12) {
                         rowData.code += item.str + ' '
@@ -55,7 +51,7 @@ export async function parsePdf(pdfUrl) {
             }
 
         }
-        console.log(JSON.stringify(data))
+        return (JSON.stringify(data))
     } catch (error) {
         console.error("Error loading PDF:", error);
     }
