@@ -16,28 +16,12 @@ export default function Scroller({ pages }: ScrollerProps) {
     const scrollerRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
-    const resetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const lastTriggerTime = useRef(0);
     const touchStartY = useRef(0);
 
     const resetScroller = () => {
         setIsVisible(false);
     };
-
-    const startResetTimer = () => {
-        if (resetTimeoutRef.current) {
-            clearTimeout(resetTimeoutRef.current);
-        }
-        resetTimeoutRef.current = setTimeout(resetScroller, 5000);
-    };
-
-    useEffect(() => {
-        return () => {
-            if (resetTimeoutRef.current) {
-                clearTimeout(resetTimeoutRef.current);
-            }
-        };
-    }, []);
 
     useEffect(() => {
         const handleTrigger = () => {
@@ -47,7 +31,6 @@ export default function Scroller({ pages }: ScrollerProps) {
 
             if (!isVisible) {
                 setIsVisible(true);
-                startResetTimer();
             } else {
                 window.location.href = pages[0].href;
             }
@@ -86,8 +69,13 @@ export default function Scroller({ pages }: ScrollerProps) {
     }, [isVisible, pages]);
 
     useEffect(() => {
+        const target = overlayRef.current;
+        if (!target) return;
+    
+        gsap.killTweensOf(target);
+    
         if (isVisible) {
-            gsap.to(overlayRef.current, {
+            gsap.to(target, {
                 y: 0,
                 opacity: 1,
                 duration: 0.25,
@@ -95,7 +83,7 @@ export default function Scroller({ pages }: ScrollerProps) {
                 pointerEvents: "auto"
             });
         } else {
-            gsap.to(overlayRef.current, {
+            gsap.to(target, {
                 y: 500,
                 opacity: 0,
                 duration: 0.75,
@@ -103,7 +91,7 @@ export default function Scroller({ pages }: ScrollerProps) {
                 pointerEvents: "none"
             });
         }
-    }, [isVisible]);
+    }, [isVisible]);    
 
     return (
         <div ref={scrollerRef} className="scroller">

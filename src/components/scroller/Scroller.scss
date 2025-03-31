@@ -1,8 +1,8 @@
+@use "sass:map";
+
 .scroller {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    @include flexbox(column);
+    width: 100vw;
     height: auto;
     pointer-events: none;
     z-index: 11;
@@ -11,10 +11,12 @@
         @include flexbox(column);
         @include full-parent;
         gap: 5vh;
-        padding: 5vh 0;
+        padding: 5vh 14vw;
+        box-sizing: border-box;
         transform: translateY(500px);
-        background-color: #00000057;
-        backdrop-filter: blur(3px);
+        background-color: #8d8d8d2c;
+        backdrop-filter: blur(12px);
+        border-radius: 50px 50px 0 0;
 
         .scroller-overlay__title {
             @include wadik-text(center);
@@ -25,26 +27,44 @@
 
         .scroller-overlay__grid {
             @include flexbox(row);
+            justify-content: space-between;
             @include full-parent;
             gap: 1.5rem;
+
+            @media (max-width: map.get($breakpoints, small-desktop)) {
+                justify-content: center;
+            }
 
             .scroller-overlay__item {
                 @include no-def-styles;
                 @include flexbox(column);
-                width: calc(12.5 * (1vh + 1vw));
-                height: calc(12.5 * (1vh + 1vw));
-                filter: invert(0.75);
+                width: calc(10 * (1vh + 1vw));
+                height: calc(10 * (1vh + 1vw));
+                gap: 1rem;
                 will-change: filter;
                 transition: filter 0.5s ease;
 
                 &:hover {
-                    filter: invert(0);
-
                     .image-wrapper {
                         img {
-                            scale: 1.1
+                            scale: 1.1;
+                            filter: grayscale(0);
                         }
-                    }     
+                    }
+                }
+
+                &:first-child {
+                    &::before {
+                        content: "Далее";
+                        z-index: 12;
+                        position: absolute;
+                        @include roboto-text(center);
+                        font-weight: 700;
+                        background-color: #00000057;
+                        padding: 5px;
+                        text-transform: uppercase;
+                        text-shadow: $text-shadow;
+                    }
                 }
 
                 .image-wrapper {
@@ -60,6 +80,7 @@
                         scale: 1;
                         object-fit: cover;
                         transition: scale 0.75s ease;
+                        filter: grayscale(1);
                     }
                 }
 
@@ -69,6 +90,14 @@
                     font-size: calc(0.75 * (1vh + 1vw));
                     color: $secondary-font-color;
                     text-transform: uppercase;
+                }
+
+                @media (max-width: map.get($breakpoints, small-desktop)) {
+                    display: none;
+
+                    &:first-child {
+                        display: flex;
+                    }
                 }
             }
         }
