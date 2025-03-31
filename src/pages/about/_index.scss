@@ -1,63 +1,30 @@
-@use "@/styles/Common.scss" as *;
-
-.hero {
-    @include flexbox(row);
-    @include no-padding();
-    justify-content: space-between;
-    padding: 0 14vw;
+.about {
+    @include flexbox(column);
     width: 100vw;
-    height: 100vh;
-    position: relative;
+    padding: 0 14vw;
     box-sizing: border-box;
+    height: auto;
+    overflow-x: hidden;
 
-    &__background {
-        @include absolute-fw();
-        z-index: -1;
-        object-fit: cover;
-        background-color: rgb(0, 0, 0);
-    }
-
-    &__showcase {
-        @include flexbox(column);
-    }
-
-    &__content {
+	&__block {
         @include flexbox(column);
         align-items: flex-start;
-        gap: calc(1.5vw);
-        text-align: left;
-        max-width: 40vw;
+        @include full-parent;
+        padding: 25vh 0;
+        gap: 2rem;
+	}
 
-        .logo {
-            left: 0;
-        }
-    }
+	&__heading, &__subheading {
+        @include wadik-text(left);
+        color: $contrast-font-color;
+        width: 60%;
+	}
 
-    &__title {
-        @include no-padding();
-        @include rubik-font(500);
-        line-height: 5.5rem;
-        width: fit-content;
-        color: white;
-    }
+	&__text {
+        @include roboto-text(left);
+        color: $contrast-font-color;
+	}
 
-    &__nav {
-        @include flexbox(row);
-        gap: 3rem;
-    }
-
-    &__nav-link {
-        @include no-def-styles();
-        @include no-padding();
-        @include flexbox(row);
-        gap: 5px;
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: rgb(236, 231, 231);
-        transition: color 0.3s ease;
-
-        &:hover {
-            color: #ffffff;
-        }
-    }
+	&__link {
+	}
 }

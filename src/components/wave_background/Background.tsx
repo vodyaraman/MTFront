@@ -2,12 +2,13 @@ import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 import { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 import { TextureLoader } from 'three'
+import "./Background.scss";
 
 const vertexShader = `
 varying vec2 vUv;
 void main() {
   vUv = uv;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 0.5);
 }
 `
 
@@ -17,7 +18,7 @@ uniform float uTime;
 varying vec2 vUv;
 
 void main() {
-  float waveOffset = sin(vUv.x * 5.0 + uTime * 0.4) * 0.25;
+  float waveOffset = sin(vUv.x * 5.0 + uTime * 0.4) * 0.1;
   vec2 displacedUV = vec2(vUv.x, vUv.y + waveOffset);
   
   vec4 textureColor = texture2D(uTexture, displacedUV);
@@ -31,7 +32,7 @@ function AnimatedImage() {
     const materialRef = useRef<THREE.ShaderMaterial>(null)
 
     // Загружаем текстуру
-    const texture = useLoader(TextureLoader, '/backgrounds/hero-background.svg')
+    const texture = useLoader(TextureLoader, '/backgrounds/hero-background-dynamic.svg')
 
     const { viewport, size } = useThree() // Получаем размеры экрана
     const [aspectRatio, setAspectRatio] = useState(viewport.width / viewport.height)
@@ -66,15 +67,7 @@ function AnimatedImage() {
 
 export default function AnimatedBackground() {
     return (
-        <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            zIndex: -1,
-            overflow: 'hidden'
-        }}>
+        <div className='animated-background'>
             <Canvas
                 camera={{ position: [0, 0, 10], fov: 75 }}
                 gl={{ alpha: true }}

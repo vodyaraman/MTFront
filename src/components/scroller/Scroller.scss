@@ -28,7 +28,7 @@
 
         .scroller-overlay__grid {
             @include flexbox(row);
-            justify-content: space-between;
+            justify-content: space-around;
             @include full-parent;
             gap: 1.5rem;
 
