@@ -2,7 +2,6 @@
 @use '@/styles/Global.scss' as *;
 
 @mixin C-title($text-align: left, $color: white) {
-    @include text-header(calc(2 *(var(--index))), left, 500);
     @include rubik-font(600);
     line-height: 5.5rem;
     width: calc(1.5rem * 33);

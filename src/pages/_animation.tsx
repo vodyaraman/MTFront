@@ -11,12 +11,11 @@ export default function AnimationWrapper() {
       x: -100,
       duration: 1,
       ease: "power3.out",
-      delay: 0.25,
+      delay: 2,
     });
 
     gsap.from(".hero__showcase", {
       opacity: 0,
-      x: 1000,
       duration: 1,
       ease: "power3.out",
       delay: 1,

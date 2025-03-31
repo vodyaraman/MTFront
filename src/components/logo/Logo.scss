@@ -8,12 +8,12 @@
     justify-content: flex-start;
 
     &__icon {
-        width: 60px;
-        height: 60px;
+        width: 5rem;
+        height: 5rem;
     }
 
     &__text {
-        font-size: calc(0.6 * (1.5vw + 1vh));
+        font-size: 1rem;
         font-weight: bold;
         color: #ffffff83;
         text-transform: uppercase;

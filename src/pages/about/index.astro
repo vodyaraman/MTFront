@@ -15,6 +15,25 @@ import './_index.scss';
 			</h1>
 			<MainButton client:load text="УТИЛИЗАЦИЯ ОТХОДОВ" href="/" />
 		</article>
-		<Scroller targetPage="/search-wastes" client:visible />
+		<Scroller
+			pages={[
+				{
+					title: "Главная",
+					href: "/",
+					image: "/images/main-page-og.png",
+				},
+				{
+					title: "Услуги",
+					href: "/about",
+					image: "/images/main-page-og.png",
+				},
+				{
+					title: "Контакты",
+					href: "/contacts",
+					image: "/images/main-page-og.png",
+				},
+			]}
+			client:load
+		/>
 	</section>
 </Layout>

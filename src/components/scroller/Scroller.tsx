@@ -2,16 +2,22 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import "./Scroller.scss";
 
-interface ScrollerProps {
-    targetPage: string;
+interface PagePreview {
+    title: string;
+    href: string;
+    image: string;
 }
 
-export default function Scroller({ targetPage }: ScrollerProps) {
+interface ScrollerProps {
+    pages: [PagePreview, PagePreview, PagePreview];
+}
+
+export default function Scroller({ pages }: ScrollerProps) {
     const scrollerRef = useRef<HTMLDivElement>(null);
-    const textRef = useRef<HTMLDivElement>(null);
-    const linkRef = useRef<HTMLAnchorElement>(null);
+    const overlayRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
     const resetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const lastTriggerTime = useRef(0);
     const touchStartY = useRef(0);
 
     const resetScroller = () => {
@@ -19,30 +25,38 @@ export default function Scroller({ targetPage }: ScrollerProps) {
     };
 
     const startResetTimer = () => {
-        if (resetTimeoutRef.current !== null) {
+        if (resetTimeoutRef.current) {
             clearTimeout(resetTimeoutRef.current);
         }
-        resetTimeoutRef.current = setTimeout(() => { resetScroller() }, 3000);
+        resetTimeoutRef.current = setTimeout(resetScroller, 5000);
     };
 
     useEffect(() => {
         return () => {
-            if (resetTimeoutRef.current !== null) {
+            if (resetTimeoutRef.current) {
                 clearTimeout(resetTimeoutRef.current);
             }
         };
     }, []);
 
     useEffect(() => {
+        const handleTrigger = () => {
+            const now = Date.now();
+            if (now - lastTriggerTime.current < 700) return;
+            lastTriggerTime.current = now;
+
+            if (!isVisible) {
+                setIsVisible(true);
+                startResetTimer();
+            } else {
+                window.location.href = pages[0].href;
+            }
+        };
+
         const handleWheel = (event: WheelEvent) => {
             if (event.deltaY > 0) {
-                if (!isVisible) {
-                    setIsVisible(true);
-                    startResetTimer();
-                } else {
-                    linkRef.current?.click(); // Эмулируем клик по ссылке
-                }
-            } else {
+                handleTrigger();
+            } else if (event.deltaY < 0) {
                 resetScroller();
             }
         };
@@ -52,15 +66,10 @@ export default function Scroller({ targetPage }: ScrollerProps) {
         };
 
         const handleTouchMove = (event: TouchEvent) => {
-            const touchEndY = event.touches[0].clientY;
-            if (touchStartY.current - touchEndY > 50) {
-                if (!isVisible) {
-                    setIsVisible(true);
-                    startResetTimer();
-                } else {
-                    linkRef.current?.click(); // Эмулируем клик по ссылке
-                }
-            } else if (touchStartY.current - touchEndY < -50) {
+            const delta = touchStartY.current - event.touches[0].clientY;
+            if (delta > 50) {
+                handleTrigger();
+            } else if (delta < -50) {
                 resetScroller();
             }
         };
@@ -74,34 +83,45 @@ export default function Scroller({ targetPage }: ScrollerProps) {
             window.removeEventListener("touchstart", handleTouchStart);
             window.removeEventListener("touchmove", handleTouchMove);
         };
-    }, [isVisible]);
+    }, [isVisible, pages]);
 
     useEffect(() => {
         if (isVisible) {
-            gsap.to(textRef.current, {
+            gsap.to(overlayRef.current, {
                 y: 0,
                 opacity: 1,
-                duration: 0.45,
+                duration: 0.25,
                 ease: "power2.in",
+                pointerEvents: "auto"
             });
         } else {
-            gsap.to(textRef.current, {
-                y: 50,
+            gsap.to(overlayRef.current, {
+                y: 500,
                 opacity: 0,
-                duration: 0.8,
+                duration: 0.75,
                 ease: "power2.out",
+                pointerEvents: "none"
             });
         }
     }, [isVisible]);
 
     return (
-        <div ref={scrollerRef} className={`scroller ${isVisible ? "visible" : ""}`}>
-            <div ref={textRef} className="scroller-text">
-                <a ref={linkRef} className="scroller-text__link" href={targetPage}>
+        <div ref={scrollerRef} className="scroller">
+            <div ref={overlayRef} className="scroller-overlay">
+                <p className="scroller-overlay__title">
                     Прокрутите вниз ещё раз, чтобы узнать о нас подробнее
-                </a>
+                </p>
+                <div className="scroller-overlay__grid">
+                    {pages.map((page, index) => (
+                        <a key={index} href={page.href} className="scroller-overlay__item">
+                            <span>{page.title}</span>
+                            <div className="image-wrapper">
+                                <img src={page.image} alt={page.title} />
+                            </div>
+                        </a>
+                    ))}
+                </div>
             </div>
-            <div className="scroller-background" />
         </div>
     );
 }

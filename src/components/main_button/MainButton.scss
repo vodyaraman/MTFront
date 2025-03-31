@@ -1,4 +1,3 @@
-@use "@/styles/Common.scss" as *;
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 .main-button {
@@ -10,14 +9,10 @@
     @include button-kit();
 
     &__text {
+        @include helvetica-text(center);
         z-index: 2;
         position: relative;
-        color: #e4e6e4cb;
-        font-weight: 700;
-        text-transform: uppercase;
-        -webkit-text-stroke: 1px #12220ecb;
-        @include rubik-font(700);
-        font-size: calc(0.6 * (1.5vw + 1vh))
+        text-transform: uppercase;    
     }
 
     &__bg {

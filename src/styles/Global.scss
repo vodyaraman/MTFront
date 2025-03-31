@@ -1,12 +1,5 @@
 @use "@/styles/Common.scss" as *;
-
-// Переменные для брейкпоинтов
-$breakpoints: (
-  large-desktop: 1920px,
-  medium-desktop: 1381px,
-  small-desktop: 1001px,
-  phone: 420px
-);
+@use "@/styles/Variables.scss" as *;
 
 // Миксин для управления размером шрифта
 @mixin font-size($min-width: null, $max-width: null, $size: null) {
@@ -92,26 +85,27 @@ ul {
 }
 
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/Unbounded/Unbounded-Regular.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'Wadik';
+  src: url('@/assets/fonts/wadik/Wadik.otf') format('opentype');
+  font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/Unbounded/Unbounded-Bold.ttf') format('truetype');
-  font-weight: 700;
+  font-family: "RobotoCondensed";
+  src: url("@/assets/fonts/roboto/RobotoCondensed-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Oswald';
-  src: url('/fonts/Oswald/Oswald-Regular.ttf') format('truetype');
-  font-weight: 500;
+  font-family: "Helvetica";
+  src: url("@/assets/fonts/helvetica/Helvetica.ttf") format("truetype");
+  font-weight: normal;
   font-style: normal;
 }
-
 
 // Размеры шрифта для разных устройств
 @include font-size($min-width: map-get($breakpoints, large-desktop), $size: 14px);
