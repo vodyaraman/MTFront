@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import "./Scroller.scss";
+import MainButton from "../main_button/MainButton";
 
 interface PagePreview {
     title: string;
@@ -81,9 +82,15 @@ export default function Scroller({ pages }: ScrollerProps) {
     useEffect(() => {
         const handleTrigger = () => {
             if (!isTitleVisible || !canTrigger) return;
-
-             window.location.href = pages[0].href;
-        };
+        
+            const firstLink = document.querySelector<HTMLAnchorElement>(
+                `.scroller-overlay__item[href="${pages[0].href}"]`
+            );
+        
+            if (firstLink) {
+                firstLink.click();
+            }
+        };        
 
         const handleWheel = (event: WheelEvent) => {
             if (event.deltaY > 0) {
@@ -133,6 +140,8 @@ export default function Scroller({ pages }: ScrollerProps) {
                         </a>
                     ))}
                 </div>
+                <MainButton text="Узнать больше" href="/about"/>
+                <MainButton text="Выйти на связь" href="/contacts"/>
             </div>
         </div>
     );

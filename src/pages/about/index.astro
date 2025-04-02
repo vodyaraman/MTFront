@@ -6,25 +6,21 @@ import Scroller from "../../components/scroller/Scroller";
 import Layout from "../../layouts/Layout.astro";
 import "./_index.scss";
 
-import HeroImage from "@/assets/about-images/hero.png"
+import HeroImage from "@/assets/about-images/hero.png";
+import Advantages from "@/components/about-components/Advantages.astro";
+import Slider from "@/components/about-components/slider/Slider.astro";
+import Clients from "@/components/about-components/Clients.astro";
 ---
 
 <Layout>
 	<AnimatedBackground client:load />
 	<section class="about">
 		<section class="about__block">
-			<img
-				class="hero__image"
-				src={HeroImage.src}
-				alt=""
-				draggable="false"
-			/>
-
 			<h2 class="about__heading">
 				<span class="selection-mimic">ООО «МЕТАЛЛ-ТРЕЙДИНГ»</span><br />
 				<span>- ЭКСПЕРТ В</span><br />
 				<span>ОБРАЩЕНИИ С ОТХОДАМИ</span>
-			</h2>	
+			</h2>
 
 			<p class="about__text">
 				Наша компания — надёжный партнёр в сфере экологических решений,
@@ -33,11 +29,16 @@ import HeroImage from "@/assets/about-images/hero.png"
 				размещения. За годы работы мы зарекомендовали себя как
 				устойчивый и высокопрофессиональный участник отрасли.
 			</p>
+
+			<img class="hero__image" src={HeroImage.src} alt="" draggable="false" />
 		</section>
 
-		<section class="about__block about__block--right">
+		<Advantages />
+
+		<section class="about__block about__block--center">
 			<h3 class="about__subheading">
-				<span class="selection-mimic">Экологический подход</span></h3>
+				<span class="selection-mimic">Экологический подход</span>
+			</h3>
 			<p class="about__text">
 				Мы охватываем все этапы работы с отходами: выстраиваем
 				логистику, сопровождаем документооборот, обеспечиваем
@@ -48,22 +49,12 @@ import HeroImage from "@/assets/about-images/hero.png"
 			</p>
 		</section>
 
-		<section class="about__block">
-			<h3 class="about__subheading">Документация и лицензии</h3>
-			<p class="about__text">
-				«Металл-Трейдинг» обладает действующими лицензиями и
-				санитарно-эпидемиологическими заключениями. Мы рекомендуем
-				ознакомиться с полным перечнем документов на отдельной странице.
-			</p>
-			<a
-				class="about__link"
-				href="/licenses"
-				aria-label="Перейти к лицензиям">Перейти к лицензиям →</a
-			>
-		</section>
+		<Slider />
 
-		<section class="about__block">
-			<h3 class="about__subheading">Нам доверяют</h3>
+		<section class="about__block about__block--right">
+			<h3 class="about__subheading">
+				<span class="selection-mimic">Нам доверяют</span>
+			</h3>
 			<p class="about__text">
 				Среди наших партнёров — крупнейшие предприятия региона:
 				Федеральная таможенная служба, Мурманская ТЭЦ, Мурманский
@@ -74,15 +65,7 @@ import HeroImage from "@/assets/about-images/hero.png"
 			</p>
 		</section>
 
-		<section class="about__block">
-			<h3 class="about__subheading">Общественная позиция</h3>
-			<p class="about__text">
-				Мы стремимся к формированию осознанного отношения к экологии.
-				Компания активно участвует в образовательных инициативах,
-				проектах раздельного сбора отходов и просветительских
-				программах, делая вклад в более чистое и устойчивое будущее.
-			</p>
-		</section>
+		<Clients />
 	</section>
 
 	<Scroller

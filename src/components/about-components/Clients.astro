@@ -1,0 +1,23 @@
+---
+import GrassTexture from "./Block";
+import fts from "@/assets/icons/about/clients/fts.svg";
+import mmtp from "@/assets/icons/about/clients/mmtp.svg";
+import pind from "@/assets/icons/about/clients/p-ind.svg";
+import tec from "@/assets/icons/about/clients/tec.svg";
+import "./AboutComponents.scss";
+---
+
+<section class="about__clients">
+    <GrassTexture client:idle>
+        <img src={fts.src} alt="Логотип ФТС" class="inside inside--clients" />
+    </GrassTexture>
+    <GrassTexture client:idle>
+        <img src={mmtp.src} alt="Логотип ММТП" class="inside inside--clients" />
+    </GrassTexture>
+    <GrassTexture client:idle>
+        <img src={pind.src} alt="Логотип Р-Индустрия" class="inside inside--clients" />
+    </GrassTexture>
+    <GrassTexture client:idle>
+        <img src={tec.src} alt="Логотип ТЭЦ" class="inside inside--clients" />
+    </GrassTexture>
+</section>

@@ -8,6 +8,7 @@ export default function LenisInit() {
 
 		const lenis = new Lenis({
 			lerp: 0.1,
+            wrapper: document.body,
 		});
 
 		window.lenis = lenis;

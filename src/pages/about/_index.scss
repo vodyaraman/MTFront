@@ -1,12 +1,14 @@
 .about {
         @include flexbox(column);
         width: 100vw;
-        padding: 0 12vw 20vh 12vw;
+        padding: 2.5vh 12vw 25vh 12vw;
         gap: 2.5vh;
         box-sizing: border-box;
         height: auto;
         overflow-x: hidden;
         transform: translateY(20vh);
+        border-radius: 50px;
+        backdrop-filter: blur(6px);
 
         &__block {
                 @include flexbox(column);
@@ -16,16 +18,23 @@
                 gap: 2rem;
                 padding: 3rem;
                 z-index: 3;
-                border-radius: 50px;
-                border: 1px solid #ccccccad;
-                backdrop-filter: blur(6px);
                 overflow: hidden;
 
                 &--right {
                         align-items: flex-end;
-                        h3, p {
+
+                        h3,
+                        p {
                                 text-align: right !important;
-                                
+
+                        }
+                }
+
+                &--center {
+                        align-items: center;
+
+                        h3, p {
+                                text-align: center !important;
                         }
                 }
         }

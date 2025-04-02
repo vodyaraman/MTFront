@@ -1,0 +1,19 @@
+---
+import GrassTexture from "./Block";
+import car from "@/assets/icons/about/car.svg";
+import list from "@/assets/icons/about/list.svg";
+import oneToFive from "@/assets/icons/about/one-to-five.svg";
+import "./AboutComponents.scss";
+---
+
+<section class="about__advantages">
+    <GrassTexture client:idle>
+        <img src={car.src} alt="Иконка машины" class="inside" />
+    </GrassTexture>
+    <GrassTexture client:idle>
+        <img src={oneToFive.src} alt="Иконка I-V" class="inside" />
+    </GrassTexture>
+    <GrassTexture client:idle>
+        <img src={list.src} alt="Иконка списка" class="inside" />
+    </GrassTexture>
+</section>
