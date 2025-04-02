@@ -12,7 +12,8 @@ declare global {
 
 declare global {
   interface Window {
-    __lenis?: import('@studio-freight/lenis').default;
+    lenis: import('@studio-freight/lenis').Lenis;
+    __onLenisReady?: ((lenis: any) => void)[];
   }
 }
 

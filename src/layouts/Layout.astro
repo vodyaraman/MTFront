@@ -1,4 +1,5 @@
 ---
+import LenisInit from "./LenisInit";
 import TransitionLayout from "./TransitionLayout.astro";
 import "@/styles/Global.scss";
 
@@ -31,5 +32,6 @@ const {
 		<TransitionLayout>
 			<slot />
 		</TransitionLayout>
+		<LenisInit client:only/>
 	</body>
 </html>
