@@ -1,3 +1,4 @@
+import MainButton from "../main_button/MainButton";
 import "./Header.scss";
 
 export default function Header() {
@@ -18,6 +19,8 @@ export default function Header() {
         <span className="header__link">
           183038, г. Мурманск, ул. Папанина, д. 28
         </span>
+
+        <MainButton text="Связаться с нами" href="/contacts"/>
       </nav>
     </header>
   );

@@ -1,12 +1,14 @@
+@use "sass:map";
+
 .about {
         @include flexbox(column);
-        width: 100vw;
-        padding: 2.5vh 12vw 25vh 12vw;
+        width: 100vw; 
+        padding: 0 12vw 40vh 12vw;
         gap: 2.5vh;
         box-sizing: border-box;
         height: auto;
         overflow-x: hidden;
-        transform: translateY(20vh);
+        transform: translateY(9vh);
         border-radius: 50px;
         backdrop-filter: blur(6px);
 
@@ -14,7 +16,7 @@
                 @include flexbox(column);
                 align-items: flex-start;
                 @include full-parent;
-                padding: 5vh 0;
+                padding: 0;
                 gap: 2rem;
                 padding: 3rem;
                 z-index: 3;
@@ -26,7 +28,7 @@
                         h3,
                         p {
                                 text-align: right !important;
-
+                                width: 100%;
                         }
                 }
 
@@ -34,6 +36,7 @@
                         align-items: center;
 
                         h3, p {
+                                width: 100%;
                                 text-align: center !important;
                         }
                 }
@@ -57,16 +60,22 @@
                 color: $contrast-font-color;
 
         }
-
-        &__link {}
 }
 
 
 .hero {
         &__image {
-                height: 100%;
+                height: calc(100% - 4rem);
                 position: absolute;
                 right: 0%;
                 z-index: -2;
         }
+}
+
+.scroller-overlay__title {
+        color: $contrast-font-color !important;
+}
+
+.scroller-overlay__item span {
+        color: $contrast-font-color !important;
 }

@@ -10,10 +10,12 @@ import HeroImage from "@/assets/about-images/hero.png";
 import Advantages from "@/components/about-components/Advantages.astro";
 import Slider from "@/components/about-components/slider/Slider.astro";
 import Clients from "@/components/about-components/Clients.astro";
+import Header from "@/components/header/index.astro";
 ---
 
 <Layout>
 	<AnimatedBackground client:load />
+	<Header/>
 	<section class="about">
 		<section class="about__block">
 			<h2 class="about__heading">
@@ -30,7 +32,12 @@ import Clients from "@/components/about-components/Clients.astro";
 				устойчивый и высокопрофессиональный участник отрасли.
 			</p>
 
-			<img class="hero__image" src={HeroImage.src} alt="" draggable="false" />
+			<img
+				class="hero__image"
+				src={HeroImage.src}
+				alt=""
+				draggable="false"
+			/>
 		</section>
 
 		<Advantages />

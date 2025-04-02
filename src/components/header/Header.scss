@@ -1,12 +1,19 @@
 .header {
     @include flexbox(column);
-    position: absolute;
-    width: 72vw;
-    height: 15vh;
-    top: -20vh;
+    position: fixed;
+    top: 0;
     left: 0;
+    width: 100vw;
+    height: 60px;
+    padding: 0 12vw;
+    z-index: 100;
+    box-sizing: border-box;
 
     &__nav {
+        backdrop-filter: blur(6px);
+        background-color: $overlay-color;
+        border-radius: 25px;
+        padding: 0 2vw;
         @include flexbox(row);
         @include full-parent;
         justify-content: space-between;
@@ -14,8 +21,12 @@
   
     &__link {
         @include roboto-text(center);
-        font-size: 1.5rem;
-        text-shadow: $text-shadow;
+        font-size: 1.25rem;
+    }
+
+    .main-button {
+        font-size: 1.25rem;
+        padding: 10px 15px;
     }
   }
   
