@@ -36,7 +36,7 @@ export default function Scroller({ pages }: ScrollerProps) {
             const windowHeight = window.innerHeight;
 
             const isBottomVisible =
-                rect.bottom <= windowHeight && rect.bottom >= windowHeight - 100;
+                rect.bottom <= windowHeight + 50 && rect.bottom >= windowHeight - 100;
 
             if (isBottomVisible) {
                 if (!isTitleVisible) {

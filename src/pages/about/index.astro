@@ -1,39 +1,95 @@
 ---
-import Logo from '../../components/logo/Logo';
-import MainButton from '../../components/main_button/MainButton';
-import Scroller from '../../components/scroller/Scroller';
-import Layout from '../../layouts/Layout.astro';
-import './_index.scss';
+import AnimatedBackground from "@/components/wave_background/Background";
+import Logo from "../../components/logo/Logo";
+import MainButton from "../../components/main_button/MainButton";
+import Scroller from "../../components/scroller/Scroller";
+import Layout from "../../layouts/Layout.astro";
+import "./_index.scss";
 ---
 
 <Layout>
-	<section class="hero">
-		<img class="hero__background" src="/backgrounds/hero-background-static.svg" alt="" />
-		<article class="hero__content">
-			<h1 class="hero__title">
-				Одна из многоопциональных компаний муранской области в сфере утилизации отходов
-			</h1>
-			<MainButton client:load text="УТИЛИЗАЦИЯ ОТХОДОВ" href="/" />
-		</article>
-		<Scroller
-			pages={[
-				{
-					title: "Главная",
-					href: "/",
-					image: "/images/main-page-og.png",
-				},
-				{
-					title: "Услуги",
-					href: "/about",
-					image: "/images/main-page-og.png",
-				},
-				{
-					title: "Контакты",
-					href: "/contacts",
-					image: "/images/main-page-og.png",
-				},
-			]}
-			client:load
-		/>
+	<AnimatedBackground client:load/>
+	<section class="about">
+		<section class="about__block">
+			<h2 class="about__heading">
+				ООО «Металл-Трейдинг» — эксперт в обращении с отходами
+			</h2>
+			<p class="about__text">
+				Наша компания — надёжный партнёр в сфере экологических решений,
+				работающий в Мурманске и за его пределами. Мы специализируемся
+				на полном цикле обращения с отходами: от сбора до утилизации и
+				размещения. За годы работы мы зарекомендовали себя как
+				устойчивый и высокопрофессиональный участник отрасли.
+			</p>
+		</section>
+
+		<section class="about__block">
+			<h3 class="about__subheading">Экологический подход</h3>
+			<p class="about__text">
+				Мы охватываем все этапы работы с отходами: выстраиваем
+				логистику, сопровождаем документооборот, обеспечиваем
+				технологическую переработку. Наш подход основан на глубоком
+				понимании потребностей каждого клиента, а также соблюдении
+				требований законодательства и принципов экологической
+				безопасности.
+			</p>
+		</section>
+
+		<section class="about__block">
+			<h3 class="about__subheading">Документация и лицензии</h3>
+			<p class="about__text">
+				«Металл-Трейдинг» обладает действующими лицензиями и
+				санитарно-эпидемиологическими заключениями. Мы рекомендуем
+				ознакомиться с полным перечнем документов на отдельной странице.
+			</p>
+			<a
+				class="about__link"
+				href="/licenses"
+				aria-label="Перейти к лицензиям">Перейти к лицензиям →</a
+			>
+		</section>
+
+		<section class="about__block">
+			<h3 class="about__subheading">Нам доверяют</h3>
+			<p class="about__text">
+				Среди наших партнёров — крупнейшие предприятия региона:
+				Федеральная таможенная служба, Мурманская ТЭЦ, Мурманский
+				морской торговый порт, корпорация «Р-Индустрия». Нас выбирают за
+				комплексный подход, прозрачность процессов и гарантии. Мы
+				предоставляем полное сопровождение, индивидуальные решения и
+				доказуемый результат.
+			</p>
+		</section>
+
+		<section class="about__block">
+			<h3 class="about__subheading">Общественная позиция</h3>
+			<p class="about__text">
+				Мы стремимся к формированию осознанного отношения к экологии.
+				Компания активно участвует в образовательных инициативах,
+				проектах раздельного сбора отходов и просветительских
+				программах, делая вклад в более чистое и устойчивое будущее.
+			</p>
+		</section>
 	</section>
+
+	<Scroller
+		pages={[
+			{
+				title: "Главная",
+				href: "/",
+				image: "/images/main-page-og.png",
+			},
+			{
+				title: "Услуги",
+				href: "/about",
+				image: "/images/main-page-og.png",
+			},
+			{
+				title: "Контакты",
+				href: "/contacts",
+				image: "/images/main-page-og.png",
+			},
+		]}
+		client:load
+	/>
 </Layout>
