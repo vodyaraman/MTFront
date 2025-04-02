@@ -1,3 +1,4 @@
+import Logo from "../logo/Logo";
 import MainButton from "../main_button/MainButton";
 import "./Header.scss";
 

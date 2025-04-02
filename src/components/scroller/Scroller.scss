@@ -39,8 +39,8 @@
             .scroller-overlay__item {
                 @include no-def-styles;
                 @include flexbox(column);
-                width: calc(10 * (1vh + 1vw));
-                height: calc(10 * (1vh + 1vw));
+                width: calc(14 * (1vh + 1vw));
+                height: calc(10.5 * (1vh + 1vw));
                 gap: 1rem;
                 will-change: filter;
                 transition: filter 0.5s ease;

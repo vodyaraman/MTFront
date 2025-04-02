@@ -1,8 +1,13 @@
 @use "sass:map";
 
+main {
+        background-color: $primary-color;
+        z-index: 10;
+}
+
 .about {
         @include flexbox(column);
-        width: 100vw; 
+        width: 100vw;
         padding: 0 12vw 40vh 12vw;
         gap: 2.5vh;
         box-sizing: border-box;
@@ -35,7 +40,8 @@
                 &--center {
                         align-items: center;
 
-                        h3, p {
+                        h3,
+                        p {
                                 width: 100%;
                                 text-align: center !important;
                         }
@@ -52,12 +58,21 @@
                         background-color: #02101f6c;
                         padding: 0.292rem 0.21em;
                 }
+
+                @media (max-width: map.get($breakpoints, small-desktop)) {
+                        width: 100%;
+                        font-size: calc(1.9 * (1vh + 1vw));
+                }
         }
 
         &__text {
                 @include roboto-text(left);
                 width: 50%;
                 color: $contrast-font-color;
+
+                @media (max-width: map.get($breakpoints, small-desktop)) {
+                        width: 100%;
+                }
 
         }
 }
@@ -69,6 +84,10 @@
                 position: absolute;
                 right: 0%;
                 z-index: -2;
+
+                @media (max-width: map.get($breakpoints, small-desktop)) {
+                        display: none;
+                }
         }
 }
 

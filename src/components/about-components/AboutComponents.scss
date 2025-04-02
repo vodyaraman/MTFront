@@ -1,12 +1,8 @@
-main {
-    background-color: $primary-color;
-    z-index: 10;
-}
+@use "sass:map";
 
 .about {
     &__grass {
         @include flexbox(column);
-        width: max(calc(12.5 * (1vw + 1vh)), 25%);
         width: 100%;
 
         img {
@@ -40,12 +36,26 @@ main {
         }
     }
 
-    &__advantages, &__clients {
+    &__advantages,
+    &__clients {
         @include flexbox(row);
         justify-content: space-between;
         border-radius: 25px;
         width: 100%;
         height: auto;
         gap: 2rem;
+
+        @media (max-width: map.get($breakpoints, phone)) {
+            @include flexbox(column);
+            gap: 5px;
+            padding: 0 14vw;
+        }
+    }
+
+    &__clients {
+        @media (max-width: map.get($breakpoints, small-desktop)) {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+        }
     }
 }
