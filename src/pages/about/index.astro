@@ -5,15 +5,27 @@ import MainButton from "../../components/main_button/MainButton";
 import Scroller from "../../components/scroller/Scroller";
 import Layout from "../../layouts/Layout.astro";
 import "./_index.scss";
+
+import HeroImage from "@/assets/about-images/hero.png"
 ---
 
 <Layout>
-	<AnimatedBackground client:load/>
+	<AnimatedBackground client:load />
 	<section class="about">
 		<section class="about__block">
+			<img
+				class="hero__image"
+				src={HeroImage.src}
+				alt=""
+				transition:persist
+			/>
+
 			<h2 class="about__heading">
-				ООО «Металл-Трейдинг» — эксперт в обращении с отходами
-			</h2>
+				<span class="selection-mimic">ООО «МЕТАЛЛ-ТРЕЙДИНГ»</span><br />
+				<span>- ЭКСПЕРТ В</span><br />
+				<span>ОБРАЩЕНИИ С ОТХОДАМИ</span>
+			</h2>	
+
 			<p class="about__text">
 				Наша компания — надёжный партнёр в сфере экологических решений,
 				работающий в Мурманске и за его пределами. Мы специализируемся
@@ -23,8 +35,9 @@ import "./_index.scss";
 			</p>
 		</section>
 
-		<section class="about__block">
-			<h3 class="about__subheading">Экологический подход</h3>
+		<section class="about__block about__block--right">
+			<h3 class="about__subheading">
+				<span class="selection-mimic">Экологический подход</span></h3>
 			<p class="about__text">
 				Мы охватываем все этапы работы с отходами: выстраиваем
 				логистику, сопровождаем документооборот, обеспечиваем
