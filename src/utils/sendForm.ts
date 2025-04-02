@@ -1,7 +1,6 @@
 import type { ResultFormValue } from "@/types/types";
 
 export async function sendForm(formData: ResultFormValue) {
-    '❗️👤🪪📩📋'
     const botToken = import.meta.env.PUBLIC_VITE_TELEGRAM_BOT_TOKEN;
     const chatId = import.meta.env.PUBLIC_VITE_TELEGRAM_CHAT_ID;
     const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
@@ -26,6 +25,7 @@ export async function sendForm(formData: ResultFormValue) {
     }
 
     try {
+        console.log(messageText)
         const response = await fetch(apiUrl, {
             method: "POST",
             headers: {
