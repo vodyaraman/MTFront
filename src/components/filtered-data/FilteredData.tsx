@@ -36,14 +36,6 @@ export default function FilteredData() {
                 : filterData(value);
             setFilteredData(filtered);
             setIsExpanded(true);
-
-            if (inputRef.current) {
-                window.scrollTo({
-                    top: 480,
-                });
-            } else {
-                setIsExpanded(false);
-            }
         },
         [data]
     );
@@ -57,7 +49,7 @@ export default function FilteredData() {
     };
 
     const handleScrollToTop = () => {
-        window.scrollTo({ top: 0 });
+        setIsExpanded(false)
     };
 
     return (
