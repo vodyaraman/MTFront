@@ -9,7 +9,7 @@ main {
         @include flexbox(column);
         width: 100vw;
         padding: 5vh 12vw;
-        gap: 2.5vh;
+        gap: 5vh;
         box-sizing: border-box;
         height: auto;
         overflow-x: hidden;
@@ -22,7 +22,6 @@ main {
                 @include full-parent;
                 padding: 0;
                 gap: 2rem;
-                padding: 3rem;
                 z-index: 3;
                 overflow: hidden;
 
@@ -74,14 +73,11 @@ main {
                 }
 
         }
-}
 
-
-.hero {
         &__image {
                 height: calc(100% - 4rem);
                 position: absolute;
-                right: 0%;
+                right: 0;
                 z-index: -2;
 
                 @media (max-width: map.get($breakpoints, small-desktop)) {
@@ -89,6 +85,7 @@ main {
                 }
         }
 }
+
 
 .scroller-overlay__title {
         color: $contrast-font-color !important;

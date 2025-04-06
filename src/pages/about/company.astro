@@ -19,10 +19,18 @@ import "../about/_index.scss";
       </h2>
 
       <p class="about__text">
-        Наша компания — надёжный партнёр в сфере экологических решений, работающий в Мурманске и за его пределами. Мы специализируемся на полном цикле обращения с отходами: от сбора до утилизации и размещения. За годы работы мы зарекомендовали себя как устойчивый и высокопрофессиональный участник отрасли.
+        Наша компания — надёжный партнёр в сфере экологических решений,
+        работающий в Мурманске и за его пределами. Мы специализируемся на полном
+        цикле обращения с отходами: от сбора до утилизации и размещения. За годы
+        работы мы зарекомендовали себя как устойчивый и высокопрофессиональный
+        участник отрасли.
       </p>
-
-      <img class="hero__image" src="/icons/main-icon.svg" alt="" draggable="false" />
+      <img
+        class="about__image"
+        src="/icons/main-icon.svg"
+        alt=""
+        draggable="false"
+      />
     </section>
 
     <Advantages />
@@ -30,9 +38,21 @@ import "../about/_index.scss";
 
   <Scroller
     pages={[
-       { title: "Экологический подход", href: "/about/approach", image: "/images/main-page-og.png" },
-       { title: "Нам доверяют", href: "/about/trust", image: "/images/main-page-og.png" },
-       { title: "Связаться с нами", href: "/contacts", image: "/images/main-page-og.png" },    
+      {
+        title: "Экологический подход",
+        href: "/about/approach",
+        image: "/images/main-page-og.png",
+      },
+      {
+        title: "Нам доверяют",
+        href: "/about/trust",
+        image: "/images/main-page-og.png",
+      },
+      {
+        title: "Связаться с нами",
+        href: "/contacts",
+        image: "/images/main-page-og.png",
+      },
     ]}
     client:load
   />
