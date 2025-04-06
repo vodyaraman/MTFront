@@ -37,6 +37,7 @@ export default function FilteredData() {
                 : filterData(value);
             setFilteredData(filtered);
             setIsExpanded(true);
+            scrollDown();
         },
         [data]
     );
