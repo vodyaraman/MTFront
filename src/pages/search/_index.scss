@@ -2,9 +2,12 @@
 @use '@/styles/Common.scss' as *;
 
 .search-wastes-layout {
-    padding: 8rem 0 5rem 0;
-    font-family: sans-serif;
-    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
 
     background-image: url('/backgrounds/search-background.png');
     background-position: center;
@@ -19,10 +22,9 @@
 }
 
 .search-wastes {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
+    @include flexbox(column);
+    @include full-parent;
+    padding: 8rem 0 5rem 0;
 
     &__main {
         width: 60%;

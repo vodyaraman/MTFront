@@ -7,7 +7,7 @@ import SearchInput from "../search-input/SearchInput";
 import dataJson from '/public/data/data.json';
 
 //Функции
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { debounce } from '../../utils/debounce';
 import { getLenis } from '@/layouts/LenisInit';
 
@@ -37,10 +37,16 @@ export default function FilteredData() {
                 : filterData(value);
             setFilteredData(filtered);
             setIsExpanded(true);
-            scrollDown();
         },
         [data]
     );
+
+    useEffect(() => {
+        if (!isExpanded) return;
+        scrollDown();
+    }, [isExpanded]);
+    
+    
 
     const debouncedHandleSearch = useCallback(debounce(handleSearch, 500), [handleSearch]);
 
@@ -52,20 +58,18 @@ export default function FilteredData() {
 
     const handleScrollToTop = () => {
         setIsExpanded(false)
-
     };
 
     const scrollDown = () => {
-        // ЗДЕСЬ МОЖЕТ БЫТЬ ВАША РЕКЛАМА
-        // const input = inputRef.current;
-        // const lenis = getLenis();
+        const lenis = getLenis();
+        const input = inputRef.current;
 
-        // if (input && lenis) {
-        //     console.log(parent)
-        //     const inputRect = input.getBoundingClientRect();
-        //     const offset = inputRect.top;
-        //     lenis.scrollTo(offset, { duration: 1.5 });
-        // }
+        if (input && lenis) {
+            console.log(parent)
+            const offset = input.getBoundingClientRect().top + window.scrollY;
+            lenis.scrollTo(offset, { duration: 1.5 });
+
+        }
     }
 
     return (
