@@ -2,12 +2,10 @@
 @use '@/styles/Common.scss' as *;
 
 .search-wastes-layout {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100vw;
-    height: 100vh;
-    z-index: -1;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
 
     background-image: url('/backgrounds/search-background.png');
     background-position: center;
@@ -22,28 +20,23 @@
 }
 
 .search-wastes {
-    @include flexbox(column);
-    @include full-parent;
+    width: 70%;
     padding: 8rem 0 5rem 0;
 
-    &__main {
-        width: 60%;
+    .search-title {
+        @include c.C-title($text-align: right);
+    }
 
-        .search-title {
-            @include c.C-title($text-align: right);
-        }
+    .search-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
 
-        .search-info {
+        &__links {
+            margin-top: 15px;
             display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-
-            &__links {
-                margin-top: 15px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
+            align-items: center;
+            justify-content: space-between;
         }
     }
 }

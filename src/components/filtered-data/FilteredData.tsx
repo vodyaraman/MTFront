@@ -7,7 +7,7 @@ import SearchInput from "../search-input/SearchInput";
 import dataJson from '/public/data/data.json';
 
 //Функции
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
 import { debounce } from '../../utils/debounce';
 import { getLenis } from '@/layouts/LenisInit';
 
@@ -17,6 +17,7 @@ import type { IData } from '../../types/types';
 export default function FilteredData() {
     const data = dataJson as Array<IData>;
     const inputRef = useRef<HTMLInputElement | null>(null);
+    const lenis = getLenis();
 
     const [filteredData, setFilteredData] = useState<Array<IData>>([]);
     const [inputValue, setInputValue] = useState('');
@@ -30,24 +31,16 @@ export default function FilteredData() {
         })
     }
 
-    const handleSearch = useCallback(
-        (value: string) => {
-            const filtered = value === ""
-                ? []
-                : filterData(value);
-            setFilteredData(filtered);
+    const handleSearch = useCallback((value: string) => {
+        if (value === "") {
+            setFilteredData([]); // Синхронное обновление
             setIsExpanded(true);
-            scrollDown();
-        },
-        [data]
-    );
-
-    useEffect(() => {
-        if (!isExpanded) return;
-        scrollDown();
-    }, [isExpanded]);
-    
-    
+            return;
+        }
+        const filtered = filterData(value);
+        setFilteredData(filtered);
+        setIsExpanded(true);
+    }, [data]);
 
     const debouncedHandleSearch = useCallback(debounce(handleSearch, 500), [handleSearch]);
 
@@ -61,17 +54,11 @@ export default function FilteredData() {
         setIsExpanded(false)
     };
 
-    const scrollDown = () => {
-        const lenis = getLenis();
-        const input = inputRef.current;
-
-        if (input && lenis) {
-            console.log(parent)
-            const offset = input.getBoundingClientRect().top + window.scrollY;
-            lenis.scrollTo(offset, { duration: 1.5 });
-
-        }
-    }
+    useEffect(() => {
+        const inputRec = inputRef.current.getBoundingClientRect();
+        const offset = inputRec.top + window.scrollY - 145;
+        lenis.scrollTo(offset, { duration: 1.2 });
+    }, [inputValue]);
 
     return (
         <div className="filtered-data">
