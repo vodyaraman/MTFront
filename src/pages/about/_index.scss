@@ -8,12 +8,11 @@ main {
 .about {
         @include flexbox(column);
         width: 100vw;
-        padding: 0 12vw 40vh 12vw;
+        padding: 5vh 12vw;
         gap: 2.5vh;
         box-sizing: border-box;
         height: auto;
         overflow-x: hidden;
-        transform: translateY(9vh);
         border-radius: 50px;
         backdrop-filter: blur(6px);
 

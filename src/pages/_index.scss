@@ -32,6 +32,7 @@
 
     &__content {
         @include flexbox(column);
+        @include no-padding;
         align-items: flex-start;
         gap: calc(1.5vw + 0.5vh);
         text-align: left;
@@ -49,7 +50,7 @@
             gap: 2.5vh;
             justify-content: flex-start;
             height: 100%;
-            padding-top: 40vh;
+            padding-top: 20vh;
         }
     }
 

@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AnimatedBackground from "@/components/wave_background/Background";
+import Scroller from "@/components/scroller/Scroller";
+import Clients from "@/components/about-components/Clients.astro";
+import "../about/_index.scss";
+---
+
+<Layout>
+  <AnimatedBackground client:load />
+
+  <section class="about">
+    <section class="about__block about__block--right">
+      <h3 class="about__subheading">
+        <span class="selection-mimic">Нам доверяют</span>
+      </h3>
+      <p class="about__text">
+        Среди наших партнёров — крупнейшие предприятия региона: Федеральная таможенная служба, Мурманская ТЭЦ, Мурманский морской торговый порт, корпорация «Р-Индустрия». Нас выбирают за комплексный подход, прозрачность процессов и гарантии. Мы предоставляем полное сопровождение, индивидуальные решения и доказуемый результат.
+      </p>
+    </section>
+
+    <Clients />
+  </section>
+
+  <Scroller
+    pages={[
+      { title: "Поиск наименований", href: "/search", image: "/images/main-page-og.png" },
+      { title: "Главная | В начало", href: "/", image: "/images/main-page-og.png" },
+      { title: "Связаться с нами", href: "/contacts", image: "/images/main-page-og.png" }
+    ]}
+    client:load
+  />
+</Layout>

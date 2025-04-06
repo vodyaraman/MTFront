@@ -1,0 +1,39 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AnimatedBackground from "@/components/wave_background/Background";
+import Scroller from "@/components/scroller/Scroller";
+import HeroImage from "@/assets/about-images/hero.png";
+import Advantages from "@/components/about-components/Advantages.astro";
+import "../about/_index.scss";
+---
+
+<Layout>
+  <AnimatedBackground client:load />
+
+  <section class="about">
+    <section class="about__block">
+      <h2 class="about__heading">
+        <span class="selection-mimic">ООО «МЕТАЛЛ-ТРЕЙДИНГ»</span><br />
+        <span>- ЭКСПЕРТ В</span><br />
+        <span>ОБРАЩЕНИИ С ОТХОДАМИ</span>
+      </h2>
+
+      <p class="about__text">
+        Наша компания — надёжный партнёр в сфере экологических решений, работающий в Мурманске и за его пределами. Мы специализируемся на полном цикле обращения с отходами: от сбора до утилизации и размещения. За годы работы мы зарекомендовали себя как устойчивый и высокопрофессиональный участник отрасли.
+      </p>
+
+      <img class="hero__image" src="/icons/main-icon.svg" alt="" draggable="false" />
+    </section>
+
+    <Advantages />
+  </section>
+
+  <Scroller
+    pages={[
+       { title: "Экологический подход", href: "/about/approach", image: "/images/main-page-og.png" },
+       { title: "Нам доверяют", href: "/about/trust", image: "/images/main-page-og.png" },
+       { title: "Связаться с нами", href: "/contacts", image: "/images/main-page-og.png" },    
+    ]}
+    client:load
+  />
+</Layout>
