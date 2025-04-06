@@ -8,7 +8,8 @@ export default function LenisInit() {
 
 		const lenis = new Lenis({
 			lerp: 0.1,
-            wrapper: document.body,
+			content: document.body,
+			wrapper: document.body,
 		});
 
 		window.lenis = lenis;
@@ -24,7 +25,7 @@ export default function LenisInit() {
 		};
 		requestAnimationFrame(raf);
 
-        console.log("Lenis initialised")
+		console.log("Lenis initialised")
 
 		return () => {
 			lenis.destroy();

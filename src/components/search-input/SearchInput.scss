@@ -3,10 +3,10 @@
 
 .search {
     padding: 8px;
-    padding-left: 1rem;
-    padding-right: .7rem;
-    background-color: rgba(#eee, 0.2);
+    padding-inline: 5.5rem;
+    background-color: rgba(#F5FFEE, .5);
     border-radius: 25px;
+    position: relative;
 
     display: flex;
     align-items: center;
@@ -15,6 +15,12 @@
     &__input {
         width: 100%;
     }
+
+    &__icon {
+        position: absolute;
+        left: calc(5rem / 1.8);
+        transform: translateX(calc(-2rem))
+    }
 }
 
 @each $breakpoint, $value in $breakpoints {
@@ -22,17 +28,34 @@
         .search {
             @if $breakpoint ==small-desktop {
                 padding: 6px;
+                padding-inline: 5rem;
+                background-color: rgba(#F5FFEE, .7);
+                border-radius: 25px;
+                position: relative;
+
+                display: flex;
+                align-items: center;
+                gap: 1rem;
             }
 
             @if $breakpoint ==phone {
                 padding: 4px;
-                padding-left: 5px;
+                padding-inline: 3rem;
+                background-color: rgba(#F5FFEE, .7);
+                border-radius: 25px;
+                position: relative;
+
+                display: flex;
+                align-items: center;
+                gap: 1rem;
             }
 
             &__icon {
                 @if $breakpoint ==small-desktop {
-                    width: 35px;
                     height: 35px;
+                    position: absolute;
+                    left: calc(5rem / 2);
+                    transform: translateX(calc(-2rem))
                 }
 
                 @if $breakpoint ==phone {

@@ -7,19 +7,20 @@ import SearchInput from "../search-input/SearchInput";
 import dataJson from '/public/data/data.json';
 
 //Функции
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { debounce } from '../../utils/debounce';
+import { getLenis } from '@/layouts/LenisInit';
 
 // Типы
 import type { IData } from '../../types/types';
 
 export default function FilteredData() {
     const data = dataJson as Array<IData>;
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const [filteredData, setFilteredData] = useState<Array<IData>>([]);
     const [inputValue, setInputValue] = useState('');
     const [isExpanded, setIsExpanded] = useState(false);
-    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const filterData = (query: string) => {
         const queryWords = query.toLowerCase().split(/\s+/).filter(word => word.length > 0);
@@ -36,6 +37,7 @@ export default function FilteredData() {
                 : filterData(value);
             setFilteredData(filtered);
             setIsExpanded(true);
+            scrollDown();
         },
         [data]
     );
@@ -50,7 +52,21 @@ export default function FilteredData() {
 
     const handleScrollToTop = () => {
         setIsExpanded(false)
+
     };
+
+    const scrollDown = () => {
+        // ЗДЕСЬ МОЖЕТ БЫТЬ ВАША РЕКЛАМА
+        // const input = inputRef.current;
+        // const lenis = getLenis();
+
+        // if (input && lenis) {
+        //     console.log(parent)
+        //     const inputRect = input.getBoundingClientRect();
+        //     const offset = inputRect.top;
+        //     lenis.scrollTo(offset, { duration: 1.5 });
+        // }
+    }
 
     return (
         <div className="filtered-data">
