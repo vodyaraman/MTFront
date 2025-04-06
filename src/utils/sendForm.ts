@@ -9,19 +9,9 @@ export async function sendForm(formData: ResultFormValue) {
 
     if ('inn' in formData) {
 
-        messageText = `
-        📌 Новая заявка 📌\n\n
-        🪪 ИНН: ${formData.inn.value}\n
-        📋 Должность: ${formData.position.value}\n
-        👤 Имя: ${formData.name.value}\n
-        👤 Фамилия: ${formData.surname.value}\n
-        ${'phone' in formData ? `📞 Телефон: ${formData.phone.value}\n` : `📩 Почта: ${formData.email.value}\n`}`
+        messageText = `📌 Новая заявка 📌\n\n🪪 ИНН: ${formData.inn.value}\n📋 Должность: ${formData.position.value}\n👤 Имя: ${formData.name.value}\n👤 Фамилия: ${formData.surname.value}\n${'phone' in formData ? `📞 Телефон: ${formData.phone.value}\n` : `📩 Почта: ${formData.email.value}\n`}`
     } else {
-        messageText = `
-        📌 Новая заявка 📌\n\n
-        👤 Имя: ${formData.name.value}\n
-        👤 Фамилия: ${formData.surname.value}\n
-        ${'phone' in formData ? `📞 Телефон: ${formData.phone.value}\n` : `📩 Почта: ${formData.email.value}\n`}`
+        messageText = `📌 Новая заявка 📌\n\n👤 Имя: ${formData.name.value}\n👤 Фамилия: ${formData.surname.value}\n${'phone' in formData ? `📞 Телефон: ${formData.phone.value}\n` : `📩 Почта: ${formData.email.value}\n`}`
     }
 
     try {
