@@ -5,12 +5,13 @@ import "./MainButton.scss";
 interface MainButtonProps {
   text: string;
   href?: string;
+  style?: "contained";
 }
 
-const MainButton = ({ text, href = "/" }: MainButtonProps) => {
+const MainButton = ({ text, href = "/", style }: MainButtonProps) => {
   const textRef = useRef<HTMLSpanElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
-  
+
   useEffect(() => {
     if (buttonRef.current) {
       gsap.set(buttonRef.current, { borderColor: "rgba(255, 255, 255, 0.5)" });
@@ -38,7 +39,7 @@ const MainButton = ({ text, href = "/" }: MainButtonProps) => {
     <a
       ref={buttonRef}
       href={href}
-      className="main-button"
+      className={`main-button${style === "contained" ? " main-button--contained" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

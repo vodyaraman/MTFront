@@ -5,13 +5,16 @@ import Scroller from "@/components/scroller/Scroller";
 import HeroImage from "@/assets/about-images/hero.png";
 import Advantages from "@/components/about-components/Advantages.astro";
 import "../about/_index.scss";
+import MainButton from "@/components/main_button/MainButton";
 ---
 
 <Layout>
   <AnimatedBackground client:load />
 
   <section class="about">
-    <section class="about__block">
+    <Advantages />
+
+    <section class="about__content about__content--company">
       <h2 class="about__heading">
         <span class="selection-mimic">ООО «МЕТАЛЛ-ТРЕЙДИНГ»</span><br />
         <span>- ЭКСПЕРТ В</span><br />
@@ -25,15 +28,21 @@ import "../about/_index.scss";
         работы мы зарекомендовали себя как устойчивый и высокопрофессиональный
         участник отрасли.
       </p>
-      <img
-        class="about__image"
-        src="/icons/main-icon.svg"
-        alt=""
-        draggable="false"
-      />
-    </section>
 
-    <Advantages />
+      <div class="button-wrapper"> 
+        <MainButton
+          client:load
+          text="Далее"
+          href="/about/approach"
+          style="contained"
+        />
+        <MainButton
+          client:load
+          text="Связаться с нами"
+          href="/contacts"
+        />
+      </div>
+    </section>
   </section>
 
   <Scroller
