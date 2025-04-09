@@ -12,19 +12,17 @@ type RowProps = {
 
 export default function DataList({ filteredData }: Props) {
     return (
-        <div className="data-list">
-            <ul className="data-list__list">
-                <p className='data-list__header-text'>Наименование вида отхода</p>
-                <p className='data-list__header-text'>Код отхода по федеральному классификационному каталогу отходов</p>
-                <p className='data-list__header-text'>Класс опасности для окружающей среды</p>
-                <p className='data-list__header-text'>Виды работ, выполняемые в составе лицензируемого вида деятельности</p>
-                {
-                    filteredData.map(item => (
-                        <TableRow key={item.name + item.code + item.type} item={item} />
-                    ))
-                }
-            </ul>
-        </div>
+        <ul className="data-list">
+            <p className='data-list__header-text'>Наименование вида отхода</p>
+            <p className='data-list__header-text'>Код отхода по федеральному классификационному каталогу отходов</p>
+            <p className='data-list__header-text'>Класс опасности для окружающей среды</p>
+            <p className='data-list__header-text'>Виды работ, выполняемые в составе лицензируемого вида деятельности</p>
+            {
+                filteredData.map(item => (
+                    <TableRow key={item.name + item.code + item.type} item={item} />
+                ))
+            }
+        </ul>
     )
 }
 

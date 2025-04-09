@@ -3,30 +3,25 @@
 @use '@/styles/Global.scss' as *;
 
 .data-list {
-    position: relative;
     height: 700px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75vw;
-    background-color: rgba(#F5FFEE, .7);
-    border-radius: 20px;
     padding: 2rem;
+    overflow-y: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 3rem;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+
+    font-weight: 600;
+    text-shadow: c.$shadow-text-l;
+    background-color: rgba(#F5FFEE, .7);
     color: #fff;
+    border-radius: 20px;
     font-size: 1.2rem;
-    overflow-y: scroll;
 
-    &__list {
-        display: grid;
-        grid-template-columns: repeat(4, auto);
-        gap: 3rem;
-        align-items: center;
-        justify-items: center;
-        text-align: center;
-        font-weight: 600;
-        text-shadow: c.$shadow-text-l;
-
-        list-style: none;
-    }
+    list-style: none;
 
     &__header-text {
         align-self: start;
