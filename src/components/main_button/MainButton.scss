@@ -22,4 +22,12 @@
         z-index: 1;
         opacity: 0.5;
     }
+
+    &--contained {
+        background-color: #ecffdf;
+
+        .main-button__text {
+            color: #000;
+        }
+    }
 }

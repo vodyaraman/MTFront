@@ -44,13 +44,21 @@ body {
   font-family: sans-serif;
   overflow-x: hidden;
   overflow-y: auto;
-  min-height: 100vh;
+  max-height: 100vh
 }
 
 main {
   @include flexbox(column);
   overflow-x: hidden;
   height: 100%;
+}
+
+.button-wrapper {
+  width: 100%;
+  @include flexbox(row);
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 h1,
@@ -111,12 +119,12 @@ ul {
 }
 
 // Размеры шрифта для разных устройств
-@include font-size($min-width: map-get($breakpoints, large-desktop), $size: 14px);
+@include font-size($min-width: map-get($breakpoints, large-desktop), $size: 13px);
 @include font-size($min-width: map-get($breakpoints, medium-desktop),
   $max-width: map-get($breakpoints, large-desktop),
   $size: 13px);
 @include font-size($min-width: map-get($breakpoints, small-desktop),
   $max-width: map-get($breakpoints, medium-desktop),
-  $size: 12px);
+  $size: 13px);
 @include font-size($max-width: map-get($breakpoints, small-desktop), $size: 11px);
 @include font-size($max-width: map-get($breakpoints, phone), $size: 10px);

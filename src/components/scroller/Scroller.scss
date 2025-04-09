@@ -5,6 +5,11 @@
     width: 100vw;
     height: auto;
     z-index: 11;
+    display: none;
+
+    @media (max-width: map.get($breakpoints, small-desktop)) {
+        display: flex;
+    }
 
     .scroller-overlay {
         @include flexbox(column);

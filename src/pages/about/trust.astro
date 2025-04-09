@@ -4,19 +4,34 @@ import AnimatedBackground from "@/components/wave_background/Background";
 import Scroller from "@/components/scroller/Scroller";
 import Clients from "@/components/about-components/Clients.astro";
 import "../about/_index.scss";
+import MainButton from "@/components/main_button/MainButton";
 ---
 
 <Layout>
   <AnimatedBackground client:load />
 
   <section class="about">
-    <section class="about__block about__block--right">
+    <section class="about__content about__content--right">
       <h3 class="about__subheading">
         <span class="selection-mimic">Нам доверяют</span>
       </h3>
       <p class="about__text">
         Среди наших партнёров — крупнейшие предприятия региона: Федеральная таможенная служба, Мурманская ТЭЦ, Мурманский морской торговый порт, корпорация «Р-Индустрия». Нас выбирают за комплексный подход, прозрачность процессов и гарантии. Мы предоставляем полное сопровождение, индивидуальные решения и доказуемый результат.
       </p>
+
+      <div class="button-wrapper"> 
+        <MainButton
+          client:load
+          text="Контакты"
+          href="/contacts"
+          style="contained"
+        />
+        <MainButton
+          client:load
+          text="Утилизация отходов"
+          href="/search"
+        />
+      </div>
     </section>
 
     <Clients />

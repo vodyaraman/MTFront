@@ -4,29 +4,52 @@ import AnimatedBackground from "@/components/wave_background/Background";
 import Scroller from "@/components/scroller/Scroller";
 import Slider from "@/components/about-components/slider/Slider.astro";
 import "../about/_index.scss";
+import MainButton from "@/components/main_button/MainButton";
 ---
 
 <Layout>
-  <AnimatedBackground client:load />
-
-  <section class="about">
-    <section class="about__block about__block--center">
+  <section class="about about--approach">
+    <section class="about__content about__content--approach">
       <h3 class="about__subheading">
         <span class="selection-mimic">Экологический подход</span>
       </h3>
       <p class="about__text">
-        Мы охватываем все этапы работы с отходами: выстраиваем логистику, сопровождаем документооборот, обеспечиваем технологическую переработку. Наш подход основан на глубоком понимании потребностей каждого клиента, а также соблюдении требований законодательства и принципов экологической безопасности.
+        Мы охватываем все этапы работы с отходами: выстраиваем логистику,
+        сопровождаем документооборот, обеспечиваем технологическую переработку.
+        Наш подход основан на глубоком понимании потребностей каждого клиента, а
+        также соблюдении требований законодательства и принципов экологической
+        безопасности.
       </p>
     </section>
 
     <Slider />
+
+    <div class="button-wrapper">
+      <MainButton
+        client:load
+        text="Далее"
+        href="/about/trust"
+      />
+    </div>
   </section>
 
   <Scroller
     pages={[
-      { title: "Нам доверяют", href: "/about/trust", image: "/images/main-page-og.png" },
-      { title: "Поиск наименований", href: "/search", image: "/images/main-page-og.png" },
-      { title: "Связаться с нами", href: "/contacts", image: "/images/main-page-og.png" }
+      {
+        title: "Нам доверяют",
+        href: "/about/trust",
+        image: "/images/main-page-og.png",
+      },
+      {
+        title: "Поиск наименований",
+        href: "/search",
+        image: "/images/main-page-og.png",
+      },
+      {
+        title: "Связаться с нами",
+        href: "/contacts",
+        image: "/images/main-page-og.png",
+      },
     ]}
     client:load
   />

@@ -6,17 +6,19 @@ main {
 }
 
 .about {
-        @include flexbox(column);
+        @include flexbox(row);
         width: 100vw;
-        padding: 5vh 12vw;
-        gap: 5vh;
+        height: 100vh;
+        padding: 0 12vw;
+        gap: 3rem;
         box-sizing: border-box;
-        height: auto;
         overflow-x: hidden;
-        border-radius: 50px;
-        backdrop-filter: blur(6px);
 
-        &__block {
+        &--approach {
+                flex-direction: column;
+        }
+
+        &__content {
                 @include flexbox(column);
                 align-items: flex-start;
                 @include full-parent;
@@ -25,23 +27,18 @@ main {
                 z-index: 3;
                 overflow: hidden;
 
-                &--right {
+                &--company {
                         align-items: flex-end;
-
-                        h3,
-                        p {
-                                text-align: right !important;
-                                width: 100%;
-                        }
                 }
 
-                &--center {
+                &--approach {
                         align-items: center;
+                        height: auto;
 
                         h3,
                         p {
-                                width: 100%;
                                 text-align: center !important;
+                                width: 100%;
                         }
                 }
         }
@@ -49,7 +46,7 @@ main {
         &__heading,
         &__subheading {
                 @include wadik-text(left);
-                width: 65%;
+                width: 100%;
                 text-shadow: $text-shadow;
 
                 .selection-mimic {
@@ -65,7 +62,7 @@ main {
 
         &__text {
                 @include roboto-text(left);
-                width: 50%;
+                width: 100%;
                 color: $contrast-font-color;
 
                 @media (max-width: map.get($breakpoints, small-desktop)) {
