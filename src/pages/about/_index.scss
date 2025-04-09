@@ -14,10 +14,16 @@ main {
         box-sizing: border-box;
         overflow-x: hidden;
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
         &--approach {
                 flex-direction: column;
         }
 
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         &__content {
                 @include flexbox(column);
                 align-items: flex-start;
@@ -28,6 +34,20 @@ main {
                 overflow: hidden;
 
                 &--company {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+                        align-items: flex-end;
+                }
+
+                &--right {
+>>>>>>> Stashed changes
+                        align-items: flex-end;
+                }
+
+                &--right {
+>>>>>>> Stashed changes
                         align-items: flex-end;
                 }
 
