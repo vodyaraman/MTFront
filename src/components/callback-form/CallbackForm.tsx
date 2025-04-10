@@ -9,6 +9,7 @@ import { validateForm } from "../../utils/validateInput";
 import { sendForm } from "@/utils/sendForm";
 
 export default function CallbackForm() {
+    const [wasteItem, setWasteItem] = useState('');
     const [formType, setFormType] = useState<'individual' | 'legal'>('individual')
     const [errorFields, setErrorFields] = useState<Array<string>>([]);
     const [messageInfo, setMessageInfo] = useState<MessageBot>({
@@ -19,16 +20,19 @@ export default function CallbackForm() {
     const [selectedContactMethod, setSelectedContactMethod] = useState<'phone' | 'email' | null>(null);
     const [contactValue, setContactValue] = useState('');
 
-    const [legalFormData, setLegalFormData] = useState<LegalDataType>({
+    const initialLegalData = {
         inn: { value: '', name: 'inn' },
         position: { value: '', name: 'position' },
         name: { value: '', name: 'name' },
         surname: { value: '', name: 'surname' },
-    });
-    const [individualFormData, setIndividualFormData] = useState<IndividualDataType>({
+    }
+    const initialIndividualData = {
         name: { value: '', name: 'name' },
         surname: { value: '', name: 'surname' },
-    })
+    }
+
+    const [legalFormData, setLegalFormData] = useState<LegalDataType>(initialLegalData);
+    const [individualFormData, setIndividualFormData] = useState<IndividualDataType>(initialIndividualData)
 
     const handleFormTypeChange = (e: React.MouseEvent<HTMLButtonElement>) => {
         const target = e.target as HTMLButtonElement;
@@ -76,6 +80,10 @@ export default function CallbackForm() {
         setContactValue('');
     }
 
+    const clearWaste = () => {
+        sessionStorage.removeItem('waste');
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>, formValues: IndividualDataType | LegalDataType) => {
         e.preventDefault();
 
@@ -88,6 +96,7 @@ export default function CallbackForm() {
 
         const updatedFormValues: ResultFormValue = {
             ...formValues,
+            ...(wasteItem ? { waste: { value: wasteItem, name: 'waste' } } : {}),
             [selectedContactMethod as 'email' | 'phone']: {
                 value: contactValue,
                 name: selectedContactMethod,
@@ -108,12 +117,23 @@ export default function CallbackForm() {
         const res = await sendForm(updatedFormValues);
         if (res.status) {
             console.log(res)
+            setLegalFormData(initialLegalData);
+            setIndividualFormData(initialIndividualData);
+            clearWaste();
+            setWasteItem('');
             return alert('Ваша заявка отправлена! Ожидайте обратной связи!');
         } else {
             console.log(res)
             return alert('Ошибка отправки формы');
         }
     }
+
+    useEffect(() => {
+        const findedWaste = sessionStorage.getItem('waste');
+        if (findedWaste) {
+            setWasteItem(findedWaste);
+        }
+    }, [wasteItem])
 
     return (
         <form className="callback-form">
@@ -192,6 +212,10 @@ export default function CallbackForm() {
                         onChange={e => setContactValue(e.target.value)}
                     />
                 )
+            }
+
+            {
+                wasteItem && <input className="callback-form__waste-input C-input" name="wasteName" value={wasteItem} disabled />
             }
 
 

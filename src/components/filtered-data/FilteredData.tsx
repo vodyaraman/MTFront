@@ -9,10 +9,11 @@ import dataJson from '/public/data/data.json';
 //Функции
 import { useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
 import { debounce } from '../../utils/debounce';
+import clsx from 'clsx';
 
 // Типы
 import type { IData } from '../../types/types';
-import clsx from 'clsx';
+
 
 export default function FilteredData() {
     const data = dataJson as Array<IData>;
@@ -69,6 +70,10 @@ export default function FilteredData() {
         scrollToTop();
     }
 
+    const handleWasteLinkClick = (wasteName: string) => {
+        sessionStorage.setItem('waste', wasteName);
+    }
+
     useEffect(() => {
         scrollToInput();
     }, [filteredData])
@@ -98,7 +103,7 @@ export default function FilteredData() {
             {(isExpanded || scrolled) && <ArrowIcon className={clsx('input-up')} onClick={handleArrowClick} />}
             <SearchInput ref={inputRef} inputValue={inputValue} handleChange={handleInputChange} />
             {filteredData.length > 0 && (
-                <DataList filteredData={filteredData} />
+                <DataList filteredData={filteredData} onLinkClick={handleWasteLinkClick} />
             )}
         </div>
     )

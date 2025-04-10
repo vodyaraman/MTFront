@@ -37,6 +37,14 @@
         }
     }
 
+    &__waste-input:disabled {
+        color: #d4d4d4;
+    }
+
+    &__submit {
+        font-size: 1.7rem;
+    }
+
     input {
         border-radius: 10px;
     }
@@ -73,6 +81,10 @@
                     }
                 }
 
+                &__submit {
+                    font-size: 1.3rem;
+                }
+
             }
 
             @if $breakpoint ==phone {
@@ -84,6 +96,11 @@
                     .active-type {
                         font-size: .7rem;
                     }
+                }
+
+                &__submit {
+                    font-size: .8rem;
+                    padding: 10px;
                 }
             }
         }

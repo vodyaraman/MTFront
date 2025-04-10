@@ -14,7 +14,7 @@ import CallbackForm from '../../components/callback-form/CallbackForm';
 <Layout>
   <Socials />
   <Background client:load />
-  <section class="contacts-layout C-layout">
+  <section class="C-layout contacts-layout">
     <div class="contacts-container">
       <div class="contacts">
         <div class="contacts__info-side">
@@ -39,23 +39,23 @@ import CallbackForm from '../../components/callback-form/CallbackForm';
   </section>
 
   <Scroller
-			pages={[
-				{
-					title: "Главная",
-					href: "/",
-					image: "/images/main-page-og.png",
-				},
-				{
-					title: "Услуги",
-					href: "/about",
-					image: "/images/main-page-og.png",
-				},
-				{
-					title: "Контакты",
-					href: "/contacts",
-					image: "/images/main-page-og.png",
-				},
-			]}
-			client:load
-		/>
+    pages={[
+      {
+        title: 'Главная',
+        href: '/',
+        image: '/images/main-page-og.png',
+      },
+      {
+        title: 'Услуги',
+        href: '/about',
+        image: '/images/main-page-og.png',
+      },
+      {
+        title: 'Контакты',
+        href: '/contacts',
+        image: '/images/main-page-og.png',
+      },
+    ]}
+    client:load
+  />
 </Layout>

@@ -1,13 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import MainButton from "../components/main_button/MainButton";
-import "./_index.scss";
-import Logo from "../components/logo/Logo";
-import GlobeWrapper from "../components/globe-icon/GlobeWrapper";
-import Scroller from "../components/scroller/Scroller";
-import AnimationWrapper from "./_animation";
-import Background from "../components/wave_background/Background";
-import Header from "@/components/header/Header";
+import Layout from '../layouts/Layout.astro';
+import MainButton from '../components/main_button/MainButton';
+import './_index.scss';
+import Logo from '../components/logo/Logo';
+import GlobeWrapper from '../components/globe-icon/GlobeWrapper';
+import Scroller from '../components/scroller/Scroller';
+import AnimationWrapper from './_animation';
+import Background from '../components/wave_background/Background';
+import Header from '@/components/header/Header';
 ---
 
 <Layout>
@@ -23,23 +23,13 @@ import Header from "@/components/header/Header";
 			<Logo client:visible transition:persist />
 			<h1 class="hero__title">Комплексная утилизация отходов</h1>
 			<p class="hero__subtitle">
-				Мы — экологическая компания полного цикла, охватывающая все
-				этапы управления отходами: от их сбора и вывоза до глубокой
-				переработки, реализации вторичных материальных ресурсов и
+				Мы — экологическая компания полного цикла, охватывающая все этапы управления отходами: от их
+				сбора и вывоза до глубокой переработки, реализации вторичных материальных ресурсов и
 				захоронения неутильных компонентов.
 			</p>
 			<div class="button-wrapper">
-				<MainButton
-					client:load
-					text="О НАС"
-					href="/about/company"
-					style="contained"				
-				/>
-				<MainButton
-					client:load
-					text="УТИЛИЗАЦИЯ ОТХОДОВ"
-					href="/search"
-				/>
+				<MainButton client:load text="О НАС" href="/about/company" style="contained" />
+				<MainButton client:load text="УТИЛИЗАЦИЯ ОТХОДОВ" href="/search" />
 			</div>
 		</article>
 		<div class="hero__showcase">
@@ -50,19 +40,19 @@ import Header from "@/components/header/Header";
 	<Scroller
 		pages={[
 			{
-				title: "О нас",
-				href: "/about/company",
-				image: "/images/main-page-og.png",
+				title: 'О нас',
+				href: '/about/company',
+				image: '/images/main-page-og.png',
 			},
 			{
-				title: "Поиск наименований",
-				href: "/search",
-				image: "/images/main-page-og.png",
+				title: 'Поиск наименований',
+				href: '/search',
+				image: '/images/main-page-og.png',
 			},
 			{
-				title: "Связаться с нами",
-				href: "/contacts",
-				image: "/images/main-page-og.png",
+				title: 'Связаться с нами',
+				href: '/contacts',
+				image: '/images/main-page-og.png',
 			},
 		]}
 		client:idle
