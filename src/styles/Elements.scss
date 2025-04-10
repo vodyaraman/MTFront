@@ -41,7 +41,6 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
     width: 100%;
     height: 100vh;
     padding: 0 8vw;
-    padding-top: 7rem;
     @include flexbox($direction: row);
     box-sizing: border-box;
 }

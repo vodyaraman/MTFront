@@ -9,19 +9,20 @@ import dataJson from '/public/data/data.json';
 //Функции
 import { useState, useCallback, useRef, useLayoutEffect, useEffect } from 'react';
 import { debounce } from '../../utils/debounce';
-import { getLenis } from '@/layouts/LenisInit';
+import clsx from 'clsx';
 
 // Типы
 import type { IData } from '../../types/types';
 
+
 export default function FilteredData() {
     const data = dataJson as Array<IData>;
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const lenis = getLenis();
 
     const [filteredData, setFilteredData] = useState<Array<IData>>([]);
     const [inputValue, setInputValue] = useState('');
     const [isExpanded, setIsExpanded] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
     const filterData = (query: string) => {
         const queryWords = query.toLowerCase().split(/\s+/).filter(word => word.length > 0);
@@ -29,6 +30,19 @@ export default function FilteredData() {
             const searchableText = `${item.name} ${item.code} ${item.type} ${item.danger}`.toLowerCase();
             return queryWords.every(word => searchableText.includes(word));
         })
+    }
+
+    const scrollToInput = () => {
+        if (inputRef.current) {
+            inputRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }
+    }
+
+    const scrollToTop = () => {
+        window.scroll(0, 0);
     }
 
     const handleSearch = useCallback((value: string) => {
@@ -40,6 +54,7 @@ export default function FilteredData() {
         const filtered = filterData(value);
         setFilteredData(filtered);
         setIsExpanded(true);
+
     }, [data]);
 
     const debouncedHandleSearch = useCallback(debounce(handleSearch, 500), [handleSearch]);
@@ -50,24 +65,46 @@ export default function FilteredData() {
         debouncedHandleSearch(value);
     };
 
-    const handleScrollToTop = () => {
-        setIsExpanded(false)
-    };
+    const handleArrowClick = () => {
+        setIsExpanded(false);
+        scrollToTop();
+    }
+
+    const handleWasteLinkClick = (wasteName: string) => {
+        sessionStorage.setItem('waste', wasteName);
+    }
 
     useEffect(() => {
-        const inputRec = inputRef.current.getBoundingClientRect();
-        const offset = inputRec.top + window.scrollY - 145;
-        lenis.scrollTo(offset, { duration: 1.2 });
-    }, [inputValue]);
+        scrollToInput();
+    }, [filteredData])
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY; // Или window.pageYOffset для старых браузеров
+
+            if (scrollPosition > 100 && !scrolled) {
+                console.log('Прокрутка больше 100px!');
+                setScrolled(true);
+
+            } else if (scrollPosition <= 100 && scrolled) {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrolled])
 
     return (
         <div className="filtered-data">
-            {isExpanded && <ArrowIcon onClick={handleScrollToTop} />}
+            {(isExpanded || scrolled) && <ArrowIcon className={clsx('input-up')} onClick={handleArrowClick} />}
             <SearchInput ref={inputRef} inputValue={inputValue} handleChange={handleInputChange} />
             {filteredData.length > 0 && (
-                <DataList filteredData={filteredData} />
+                <DataList filteredData={filteredData} onLinkClick={handleWasteLinkClick} />
             )}
-
         </div>
     )
 }

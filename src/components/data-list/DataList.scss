@@ -3,35 +3,58 @@
 @use '@/styles/Global.scss' as *;
 
 .data-list {
-    position: relative;
     height: 700px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75vw;
-    background-color: rgba(#F5FFEE, .7);
-    border-radius: 20px;
     padding: 2rem;
+    overflow-y: auto;
+
+    font-weight: 600;
+    text-shadow: c.$shadow-text-l;
+    background-color: rgba(#F5FFEE, .7);
     color: #fff;
+    border-radius: 20px;
     font-size: 1.2rem;
-    overflow-y: scroll;
 
-    &__list {
+    list-style: none;
+
+    &__header {
         display: grid;
-        grid-template-columns: repeat(4, auto);
-        gap: 3rem;
-        align-items: center;
-        justify-items: center;
+        grid-template-columns: repeat(4, 1fr);
         text-align: center;
-        font-weight: 600;
-        text-shadow: c.$shadow-text-l;
-
-        list-style: none;
+        margin-bottom: 3rem;
     }
 
     &__header-text {
-        align-self: start;
+        align-self: center;
         font-weight: 900;
         text-shadow: c.$shadow-text-l;
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    &__waste-link {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-items: center;
+        align-items: center;
+
+        padding: 1.5rem;
+        border-radius: 10px;
+
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+            background-color: rgba(#eee, .6);
+        }
     }
 }
 

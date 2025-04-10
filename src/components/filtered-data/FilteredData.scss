@@ -1,4 +1,5 @@
 .filtered-data {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
@@ -8,15 +9,21 @@
     position: relative;
 }
 
-// Для expanded
-//     /* height: 280px; */
-//     display: grid
-// ;
-//     grid-template-columns: repeat(4, auto);
-//     padding-bottom: 2rem;
-//     gap: 3rem;
-//     align-items: center;
-//     justify-items: center;
-//     text-align: center;
-//     list-style: none;
-//     /* overflow-y: scroll;
+.input-up {
+    position: absolute;
+    top: -6%;
+    left: 50%;
+    cursor: pointer;
+    transform: translateX(-50%) rotateX(180deg);
+
+    path {
+        transition: .3s;
+    }
+
+    &:hover {
+        path {
+            transform: scale(1.09);
+            fill: #eee;
+        }
+    }
+}

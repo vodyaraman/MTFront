@@ -31,11 +31,16 @@ export interface MailContactMethod {
     email?: IFormValue,
 }
 
-type BaseFormValue = IndividualDataType | LegalDataType;
-type ContactInfo = PhoneContactMethod | MailContactMethod;
+interface WasteFormValue {
+    waste?: IFormValue,
+}
 
-export type ResultFormValue = | (BaseFormValue & PhoneContactMethod)
+type BaseFormValue = IndividualDataType | LegalDataType;
+
+type FormValue = (BaseFormValue & PhoneContactMethod)
     | (BaseFormValue & MailContactMethod);
+
+export type ResultFormValue = FormValue | (FormValue & WasteFormValue)
 
 export interface ValidationErrors {
     errorFields: Array<string>,

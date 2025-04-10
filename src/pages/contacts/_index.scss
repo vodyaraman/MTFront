@@ -1,6 +1,10 @@
 @use '@/styles/Elements.scss' as c;
 @use '@/styles/Common.scss' as *;
 
+.contacts-layout {
+    padding-top: 0;
+}
+
 .contacts-container {
     min-height: 70%;
     width: 100%;

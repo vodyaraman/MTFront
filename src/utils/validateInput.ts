@@ -1,9 +1,7 @@
 // Типы
-import type { IndividualDataType, LegalDataType, ValidationErrors } from '../types/types';
+import type { ResultFormValue, ValidationErrors } from '../types/types';
 
-type FormValue = IndividualDataType | LegalDataType
-
-export const validateForm = (formValue: FormValue) => {
+export const validateForm = (formValue: ResultFormValue) => {
     const phoneRegex = /^(?:\+?7|8)\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$|^(\+?\d{11})$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -17,7 +15,7 @@ export const validateForm = (formValue: FormValue) => {
             continue;
         }
 
-        const typedKey = key as keyof FormValue;
+        const typedKey = key as keyof ResultFormValue;
         const { value, name } = formValue[typedKey]
 
         let isValidate;
