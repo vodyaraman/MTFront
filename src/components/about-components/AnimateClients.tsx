@@ -19,15 +19,18 @@ export default function ClientsSlider() {
 
   useEffect(() => {
     if (window.matchMedia("(max-width: 768px)").matches) return;
-
+  
     const track = trackRef.current;
     if (!track) return;
-
-    const height = track.offsetHeight / 2;
-
-    const startAnimation = () => {
+  
+    const imgs = Array.from(track.querySelectorAll("img"));
+    let loaded = 0;
+  
+    const checkAndStart = () => {
+      loaded++;
+      if (loaded === imgs.length) {
         const totalHeight = track.scrollHeight / 2;
-    
+  
         gsap.to(track, {
           y: `-=${totalHeight}`,
           duration: 30,
@@ -37,15 +40,17 @@ export default function ClientsSlider() {
             y: gsap.utils.unitize((y) => parseFloat(y) % totalHeight),
           },
         });
-      };
-    
-      // Ожидаем отрисовку всех изображений + DOM
-      requestAnimationFrame(() => {
-        setTimeout(startAnimation, 0); // или 50–100ms для надёжности
-      });
-
-    console.log("Slider started")
-  }, []);
+      }
+    };
+  
+    imgs.forEach((img) => {
+      if (img.complete) {
+        checkAndStart();
+      } else {
+        img.addEventListener("load", checkAndStart);
+      }
+    });
+  }, []);  
 
   return (
       <div className="slider-track" ref={trackRef}>

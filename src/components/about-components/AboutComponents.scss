@@ -17,12 +17,13 @@
         .inside {
             position: absolute;
             display: flex;
-            width: 10rem;
-            height: 10rem;
+            width: 15rem;
+            height: 15rem;
             overflow: visible;
             box-shadow: none;
             will-change: scale;
             transition: scale 0.25s ease;
+            object-fit: fill;
 
             &:hover {
                 scale: 1.05;

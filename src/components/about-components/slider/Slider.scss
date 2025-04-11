@@ -24,7 +24,8 @@ button {
 
 .slider {
     @include flexbox(row);
-    padding: 2.5vh 0 10vh 0;
+	margin-top: 2rem;
+    padding: 2rem 0 10vh 0;
 	width: calc(3 * var(--slide-width));
 	height: calc(2 * var(--slide-height));
 }
@@ -175,15 +176,16 @@ button {
 }
 
 .slide__bg {
-	display: flex;
-    position: absolute;
-    @include full-parent;
+	position: fixed;
+	inset: 0;
+	z-index: 0;
 	background-image: var(--bg);
 	background-size: cover;
 	background-position: center center;
-
-	z-index: -1;
+	opacity: 1;
 	pointer-events: none;
+	filter: blur(9px) brightness(0.5);
+	scale: 1.1;
 
 	transition: opacity var(--slide-transition-duration) ease,
 		transform var(--slide-transition-duration) ease;
@@ -192,11 +194,7 @@ button {
 		content: "";
 		position: absolute;
 		inset: 0;
-	}
-
-	&::before {
-		background: rgba(0, 0, 0, 0.8);
-		backdrop-filter: blur(8px);
+		background: rgba(0, 0, 0, 0.6);
 	}
 
 	&:not([data-current]) {

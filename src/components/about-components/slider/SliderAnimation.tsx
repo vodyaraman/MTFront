@@ -167,6 +167,13 @@ const TiltSliderScript = () => {
 
             buttons.prev?.addEventListener("click", change(-1));
             buttons.next?.addEventListener("click", change(1));
+
+            const bg = document.querySelector<HTMLElement>(".slide__bg[data-current]");
+            const currentSlideImg = document.querySelector<HTMLElement>(".slide[data-current] .slide--image") as HTMLImageElement;
+            if (bg && currentSlideImg) {
+                bg.style.setProperty("--bg", `url(${currentSlideImg.src})`);
+            }
+
         }
 
         function change(direction: number) {
@@ -211,6 +218,13 @@ const TiltSliderScript = () => {
                 Object.values(current).forEach((el) => el.setAttribute("data-current", ""));
                 Object.values(previous).forEach((el) => el.setAttribute("data-previous", ""));
                 Object.values(next).forEach((el) => el.setAttribute("data-next", ""));
+
+                const bg = document.querySelector<HTMLElement>(".slide__bg[data-current]");
+                const img = current.slide.querySelector<HTMLImageElement>(".slide--image");
+                if (bg && img) {
+                    bg.style.setProperty("--bg", `url(${img.src})`);
+                }
+
             };
         }
 

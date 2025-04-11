@@ -19,22 +19,21 @@ uniform float uTime;
 varying vec2 vUv;
 
 void main() {
-  // Дыхание — масштабируем UV вокруг центра
-  float zoom = 1.0 + sin(uTime * 0.5) * 0.2; // 2% масштаб
+  float zoom = 1.0 + abs(sin(uTime * 0.5)) * 0.25;
   vec2 center = vec2(0.5, 0.5);
   vec2 zoomedUV = (vUv - center) / zoom + center;
 
-  // Смещение по кругу (оставим)
   float radius = 0.01;
   vec2 offset = vec2(
     sin(uTime * 0.2) * radius,
     cos(uTime * 0.2) * radius
   );
 
-  vec2 uv = clamp(zoomedUV + offset, 0.0, 1.0); // Защита от выхода за границы
+  vec2 uv = zoomedUV + offset;
 
   gl_FragColor = texture2D(uTexture, uv);
 }
+
 `;
 
 function AnimatedImage() {

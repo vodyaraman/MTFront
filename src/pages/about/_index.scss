@@ -41,6 +41,8 @@ main {
                                 width: 100%;
                         }
                 }
+
+
         }
 
         &__heading,
@@ -63,11 +65,8 @@ main {
         &__text {
                 @include roboto-text(left);
                 width: 100%;
+                max-width: 1000px;
                 color: $contrast-font-color;
-
-                @media (max-width: map.get($breakpoints, small-desktop)) {
-                        width: 100%;
-                }
 
         }
 
