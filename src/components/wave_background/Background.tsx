@@ -6,11 +6,12 @@ import "./Background.scss";
 
 const vertexShader = `
 varying vec2 vUv;
+
 void main() {
   vUv = uv;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 0.5);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
 }
-`
+`;
 
 const fragmentShader = `
 uniform sampler2D uTexture;
@@ -18,21 +19,30 @@ uniform float uTime;
 varying vec2 vUv;
 
 void main() {
-  float waveOffset = sin(vUv.x * 5.0 + uTime * 0.4) * 0.1;
-  vec2 displacedUV = vec2(vUv.x, vUv.y + waveOffset);
-  
-  vec4 textureColor = texture2D(uTexture, displacedUV);
-  
-  gl_FragColor = textureColor;
+  // Дыхание — масштабируем UV вокруг центра
+  float zoom = 1.0 + sin(uTime * 0.5) * 0.2; // 2% масштаб
+  vec2 center = vec2(0.5, 0.5);
+  vec2 zoomedUV = (vUv - center) / zoom + center;
+
+  // Смещение по кругу (оставим)
+  float radius = 0.01;
+  vec2 offset = vec2(
+    sin(uTime * 0.2) * radius,
+    cos(uTime * 0.2) * radius
+  );
+
+  vec2 uv = clamp(zoomedUV + offset, 0.0, 1.0); // Защита от выхода за границы
+
+  gl_FragColor = texture2D(uTexture, uv);
 }
-`
+`;
 
 function AnimatedImage() {
     const meshRef = useRef<THREE.Mesh>(null)
     const materialRef = useRef<THREE.ShaderMaterial>(null)
 
     // Загружаем текстуру
-    const texture = useLoader(TextureLoader, '/backgrounds/hero-background-dynamic.svg')
+    const texture = useLoader(TextureLoader, '/backgrounds/hero-background-dynamic.png')
 
     const { viewport, size } = useThree() // Получаем размеры экрана
     const [aspectRatio, setAspectRatio] = useState(viewport.width / viewport.height)
@@ -44,20 +54,20 @@ function AnimatedImage() {
 
     useFrame((state, delta) => {
         if (materialRef.current) {
-            materialRef.current.uniforms.uTime.value += delta * 0.1 // Плавная анимация
+            materialRef.current.uniforms.uTime.value += delta * 0.1
         }
     })
 
     return (
-        <mesh ref={meshRef} scale={[10, 10, 1]} key={aspectRatio}>
-            <planeGeometry args={[aspectRatio * 2, aspectRatio * 0.75]} />
+        <mesh ref={meshRef}>
+            <planeGeometry args={[viewport.width, viewport.height]} />
             <shaderMaterial
                 ref={materialRef}
                 vertexShader={vertexShader}
                 fragmentShader={fragmentShader}
                 uniforms={{
                     uTime: { value: 0 },
-                    uTexture: { value: texture }
+                    uTexture: { value: texture },
                 }}
                 transparent={true}
             />
