@@ -5,6 +5,7 @@ import Scroller from "@/components/scroller/Scroller";
 import Slider from "@/components/about-components/slider/Slider.astro";
 import "../about/_index.scss";
 import MainButton from "@/components/main_button/MainButton";
+import AnimationWrapper from "./_animation";
 ---
 
 <Layout>
@@ -45,4 +46,6 @@ import MainButton from "@/components/main_button/MainButton";
     ]}
     client:load
   />
+
+  <AnimationWrapper client:only/>
 </Layout>

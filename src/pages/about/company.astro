@@ -6,6 +6,7 @@ import HeroImage from "@/assets/about-images/hero.png";
 import Advantages from "@/components/about-components/Advantages.astro";
 import "../about/_index.scss";
 import MainButton from "@/components/main_button/MainButton";
+import AnimationWrapper from "./_animation";
 ---
 
 <Layout>
@@ -33,7 +34,7 @@ import MainButton from "@/components/main_button/MainButton";
         <MainButton
           client:load
           text="Далее"
-          href="/about/approach"
+          href="/about/trust"
           style="contained"
         />
         <MainButton
@@ -65,4 +66,6 @@ import MainButton from "@/components/main_button/MainButton";
     ]}
     client:load
   />
+
+  <AnimationWrapper client:only/>
 </Layout>

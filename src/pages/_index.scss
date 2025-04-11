@@ -13,7 +13,6 @@
 
     &__background {
         @include absolute-fw();
-        position: fixed;
         z-index: -1;
         object-fit: cover;
 

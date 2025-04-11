@@ -6,16 +6,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function AnimationWrapper() {
   useEffect(() => {
-    gsap.set(".hero__content, .hero__showcase", { opacity: 1 });
+    gsap.set(".search-wastes", { opacity: 1 });
 
     const tl = gsap.timeline({ delay: 1.2, defaults: { ease: "power3.out" } });
 
     tl.from("#swup", { width: "0%", duration: 0.33 }, "-=0.5");
-    tl.from(".logo, .hero__title", { x: 200, duration: 0.8 }, "-=0.5");
-    tl.from(".hero__subtitle", { opacity: 0, y: 30, duration: 0.8 }, "-=0.6");
-    tl.from(".button-wrapper", { opacity: 0, y: 30, duration: 0.8 }, "-=0.25");
-
-    tl.from(".hero__showcase", { opacity: 0, duration: 1 }, "-=0.5");
+    tl.from(".search-title", { x: 200, duration: 0.8 }, "-=0.5");
+    tl.from(".call-us-link, .license-link", { opacity: 0, y: 30, duration: 0.8 }, "-=0.6");
+    tl.from(".search-info", { opacity: 0, duration: 1 }, "-=0.5");
   }, []);
 
   return null;
