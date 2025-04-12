@@ -224,7 +224,7 @@ export default function CallbackForm() {
                 wasteItem && (
                     <div className="callback-form__waste-container">
                         <input className="callback-form__waste-input C-input" name="wasteName" value={wasteItem} disabled />
-                        <span className="waste-clear-icon"><CrossIcon onClick={handleClearWaste} /></span>
+                        <span className="waste-clear-icon"><CrossIcon className="cross-icon" onClick={handleClearWaste} /></span>
                     </div>
                 )
             }

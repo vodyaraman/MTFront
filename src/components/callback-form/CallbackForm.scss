@@ -46,7 +46,7 @@
     }
 
     &__submit {
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
 
     &__waste-container {
@@ -110,10 +110,6 @@
                     }
                 }
 
-                &__submit {
-                    font-size: 1.3rem;
-                }
-
             }
 
             @if $breakpoint ==phone {
@@ -127,9 +123,9 @@
                     }
                 }
 
-                &__submit {
-                    font-size: .8rem;
-                    padding: 10px;
+                .cross-icon {
+                    width: 20px;
+                    height: 20px;
                 }
             }
         }

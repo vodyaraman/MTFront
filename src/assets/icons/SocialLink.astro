@@ -40,4 +40,10 @@ const { href, iconId, text } = Astro.props;
   .social-link:hover p {
     color: #fff;
   }
+
+  @media (max-width: 1000px) {
+    .social-link {
+      filter: grayscale(0);
+    }
+  }
 </style>

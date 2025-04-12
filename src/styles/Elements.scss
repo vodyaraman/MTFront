@@ -36,8 +36,6 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
     &:hover {
         color: rgb(95, 95, 248);
     }
-
-    //
 }
 
 .C-layout {
@@ -91,13 +89,6 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
             @if $breakpoint ==phone {
                 width: 20px;
                 height: 20px;
-            }
-        }
-
-        .C-text {
-
-            @if $breakpoint ==phone {
-                font-size: 1.3rem;
             }
         }
     }
