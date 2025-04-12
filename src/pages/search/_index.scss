@@ -1,5 +1,6 @@
 @use '@/styles/Elements.scss' as c;
 @use '@/styles/Common.scss' as *;
+@use '@/styles/Variables.scss' as *;
 
 .search-wastes-layout {
     width: 100vw;
@@ -20,7 +21,7 @@
 }
 
 .search-wastes {
-    width: 70%;
+    width: 75%;
     padding: 8rem 0 5rem 0;
 
     .search-title {
@@ -37,6 +38,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }
+    }
+}
+
+@each $breakpoint, $value in $breakpoints {
+    @media (max-width: $value) {
+        .search-wastes {
+            @if $breakpoint ==phone {
+                width: 90%;
+            }
         }
     }
 }
