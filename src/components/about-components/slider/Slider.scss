@@ -77,6 +77,34 @@ button {
 	}
 }
 
+.slider--zone {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 33.333%;
+	cursor: pointer;
+	z-index: 999;
+	background: transparent;
+	border: none;
+	padding: 0;
+
+	// отключаем выделение
+	user-select: none;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.slider--zone__left {
+	left: 0;
+}
+
+.slider--zone__right {
+	right: 0;
+}
+
+
 /* ------------------------------------------------ */
 /* -------------------- SLIDE --------------------- */
 /* ------------------------------------------------ */

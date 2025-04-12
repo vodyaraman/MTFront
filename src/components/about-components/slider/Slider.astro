@@ -1,29 +1,15 @@
 ---
 import "./Slider.scss";
-import slide1 from "@/assets/about-images/slider/image1.png"
-import slide2 from "@/assets/about-images/slider/image2.png"
-import slide3 from "@/assets/about-images/slider/image3.png"
+import slide1 from "@/assets/about-images/slider/image1.png";
+import slide2 from "@/assets/about-images/slider/image2.png";
+import slide3 from "@/assets/about-images/slider/image3.png";
 import TiltSliderScript from "./SliderAnimation";
 ---
 
 <div class="slider">
     <div class="slide__bg" data-current></div>
 
-    <button class="slider--btn slider--btn__prev">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        >
-            <path d="m15 18-6-6 6-6"></path>
-        </svg>
-    </button>
+    <button class="slider--zone slider--zone__left slider--btn__prev"></button>
 
     <div class="slides__wrapper">
         <div class="slides">
@@ -112,7 +98,7 @@ import TiltSliderScript from "./SliderAnimation";
                 <div class="slide-info__inner">
                     <div class="slide-info--text__wrapper">
                         <div data-title class="slide-info--text">
-                            <span >Утилизация</span>
+                            <span>Утилизация</span>
                         </div>
                         <div data-subtitle class="slide-info--text">
                             <span>I - V классов отходов</span>
@@ -123,21 +109,7 @@ import TiltSliderScript from "./SliderAnimation";
         </div>
     </div>
 
-    <button class="slider--btn slider--btn__next">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        >
-            <path d="m9 18 6-6-6-6"></path>
-        </svg>
-    </button>
+    <button class="slider--zone slider--zone__right slider--btn__next"></button>
 </div>
 
-<TiltSliderScript client:load/>
+<TiltSliderScript client:load />
