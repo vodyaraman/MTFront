@@ -7,6 +7,7 @@ import './CallbackForm.scss';
 import type { IndividualDataType, LegalDataType, MessageBot, ResultFormValue, ValidationErrors } from '../../types/types';
 import { validateForm } from "../../utils/validateInput";
 import { sendForm } from "@/utils/sendForm";
+import CrossIcon from "@/assets/icons/cross-icon";
 
 export default function CallbackForm() {
     const [wasteItem, setWasteItem] = useState('');
@@ -135,6 +136,11 @@ export default function CallbackForm() {
         }
     }, [wasteItem])
 
+    const handleClearWaste = () => {
+        sessionStorage.removeItem('waste');
+        setWasteItem('');
+    }
+
     return (
         <form className="callback-form">
             <div className="callback-form__types">
@@ -215,7 +221,12 @@ export default function CallbackForm() {
             }
 
             {
-                wasteItem && <input className="callback-form__waste-input C-input" name="wasteName" value={wasteItem} disabled />
+                wasteItem && (
+                    <div className="callback-form__waste-container">
+                        <input className="callback-form__waste-input C-input" name="wasteName" value={wasteItem} disabled />
+                        <span className="waste-clear-icon"><CrossIcon onClick={handleClearWaste} /></span>
+                    </div>
+                )
             }
 
 
