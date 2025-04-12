@@ -4,6 +4,7 @@ import type { ResultFormValue, ValidationErrors } from '../types/types';
 export const validateForm = (formValue: ResultFormValue) => {
     const phoneRegex = /^(?:\+?7|8)\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$|^(\+?\d{11})$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const telegramRegex = /^@[a-zA-Z](?!.*__)(?!.*_$)[\w]{3,30}$/;
 
     let validateResults: ValidationErrors = {
         errorFields: [],
@@ -24,6 +25,8 @@ export const validateForm = (formValue: ResultFormValue) => {
             isValidate = validateInput(value, emailRegex);
         } else if (name === 'phone') {
             isValidate = validateInput(value, phoneRegex);
+        } else if (name === 'telegram') {
+            isValidate = validateInput(value, telegramRegex);
         } else if (name) {
             isValidate = validateInput(value);
         }

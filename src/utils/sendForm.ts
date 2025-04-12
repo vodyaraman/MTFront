@@ -7,10 +7,21 @@ export async function sendForm(formData: ResultFormValue) {
 
     let messageText = '';
 
+    function generateContactMethod() {
+        if ('phone' in formData && formData.phone.value) {
+            return `📞 Телефон: ${formData.phone.value}\n`;
+        } else if ('email' in formData && formData.email.value) {
+            return `📩 Почта: ${formData.email.value}\n`;
+        } else if ('telegram' in formData && formData.telegram.value) {
+            return `📱 Telegram: ${formData.telegram.value}\n`;
+        }
+        return '';
+    }
+
     if ('inn' in formData) {
-        messageText = `📌 Новая заявка 📌\n\n🪪 ИНН: ${formData.inn.value}\n📋 Должность: ${formData.position.value}\n👤 Имя: ${formData.name.value}\n👤 Фамилия: ${formData.surname.value}\n${'phone' in formData ? `📞 Телефон: ${formData.phone.value}\n` : `📩 Почта: ${formData.email?.value}\n`}${'waste' in formData && `📎 Выбранный отход: ${formData.waste}\n`}`
+        messageText = `Ⓜ️ Новая заявка ♻️\n\n🪪 ИНН: ${formData.inn.value}\n📋 Должность: ${formData.position.value}\n👤 Имя: ${formData.name.value}\n👥 Фамилия: ${formData.surname.value}\n${generateContactMethod()}${'waste' in formData && `📎 Выбранный отход: ${formData.waste}\n`}`
     } else {
-        messageText = `📌 Новая заявка 📌\n\n👤 Имя: ${formData.name.value}\n👤 Фамилия: ${formData.surname.value}\n${'phone' in formData ? `📞 Телефон: ${formData.phone.value}\n` : `📩 Почта: ${formData.email?.value}\n`} ${'waste' in formData && `📎 Выбранный отход: ${formData.waste?.value}\n`}`
+        messageText = `Ⓜ️ Новая заявка ♻️\n\n👤 Имя: ${formData.name.value}\n👥 Фамилия: ${formData.surname.value}\n${generateContactMethod()}${'waste' in formData && `📎 Выбранный отход: ${formData.waste?.value}\n`}`
     }
 
     try {
