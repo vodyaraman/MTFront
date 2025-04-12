@@ -21,13 +21,12 @@ export default function DataList({ filteredData, onLinkClick }: Props) {
                 <p className='data-list__header-text'>Класс опасности для окружающей среды</p>
                 <p className='data-list__header-text'>Виды работ, выполняемые в составе лицензируемого вида деятельности</p>
             </div>
-            <div className="data-list__main">
-                {
-                    filteredData.map(item => (
-                        <TableRow key={item.name + item.code + item.type} item={item} onLinkClick={onLinkClick} />
-                    ))
-                }
-            </div>
+
+            {
+                filteredData.map(item => (
+                    <TableRow key={item.name + item.code + item.type} item={item} onLinkClick={onLinkClick} />
+                ))
+            }
         </ul>
     )
 }

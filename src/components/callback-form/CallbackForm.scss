@@ -37,6 +37,10 @@
         }
     }
 
+    &__waste-input {
+        padding-right: 3rem;
+    }
+
     &__waste-input:disabled {
         color: #d4d4d4;
     }
@@ -45,8 +49,33 @@
         font-size: 1.7rem;
     }
 
+    &__waste-container {
+        position: relative;
+
+        .waste-clear-icon {
+            position: absolute;
+            left: 98%;
+            top: 50%;
+            transform: translate(-95%, -50%);
+
+            cursor: pointer;
+
+            svg path {
+                transition: .3s;
+            }
+
+            &:hover {
+                svg path {
+                    stroke: #fff;
+                }
+            }
+        }
+    }
+
     input {
         border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .active-type {
@@ -73,11 +102,11 @@
             @if $breakpoint ==small-desktop {
                 &__types {
                     .callback-type-button {
-                        font-size: .85rem;
+                        font-size: 1.3rem;
                     }
 
                     .active-type {
-                        font-size: 1rem;
+                        font-size: 1.5rem;
                     }
                 }
 
@@ -90,11 +119,11 @@
             @if $breakpoint ==phone {
                 &__types {
                     .callback-type-button {
-                        font-size: .5rem;
+                        font-size: 1.2rem;
                     }
 
                     .active-type {
-                        font-size: .7rem;
+                        font-size: 1.3rem;
                     }
                 }
 

@@ -14,7 +14,7 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
 
 .C-text {
     color: #fff;
-    font-size: calc(var(--index) / 35);
+    font-size: 1.5rem;
 }
 
 .C-input {
@@ -74,7 +74,7 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
             }
 
             @if $breakpoint ==phone {
-                padding: 8px;
+                padding: 12px;
                 padding-left: 10px;
             }
         }
@@ -88,6 +88,13 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
             @if $breakpoint ==phone {
                 width: 20px;
                 height: 20px;
+            }
+        }
+
+        .C-text {
+
+            @if $breakpoint ==phone {
+                font-size: 1.3rem;
             }
         }
     }
