@@ -23,6 +23,8 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
     border: none;
     outline: none;
     font-size: 1.35rem;
+    -webkit-padding-start: 24px;
+    -webkit-padding-end: 24px;
 }
 
 .C-link {
@@ -72,10 +74,14 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
         .C-input {
             @if $breakpoint ==small-desktop {
                 padding: 15px;
+                -webkit-padding-start: 15px;
+                -webkit-padding-end: 15px;
             }
 
             @if $breakpoint ==phone {
                 padding: 12px;
+                -webkit-padding-start: 12px;
+                -webkit-padding-end: 12px;
                 padding-left: 10px;
             }
         }
