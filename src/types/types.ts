@@ -23,12 +23,18 @@ export interface LegalDataType {
     surname: IFormValue;
 }
 
+export type SelectedContactMethod = 'phone' | 'email' | 'telegram' | null;
+
 export interface PhoneContactMethod {
     phone: IFormValue,
 }
 
 export interface MailContactMethod {
-    email?: IFormValue,
+    email: IFormValue,
+}
+
+export interface TelegramContactMethod {
+    telegram: IFormValue,
 }
 
 interface WasteFormValue {
@@ -38,9 +44,9 @@ interface WasteFormValue {
 type BaseFormValue = IndividualDataType | LegalDataType;
 
 type FormValue = (BaseFormValue & PhoneContactMethod)
-    | (BaseFormValue & MailContactMethod);
+    | (BaseFormValue & MailContactMethod) | (BaseFormValue & TelegramContactMethod);
 
-export type ResultFormValue = FormValue | (FormValue & WasteFormValue)
+export type ResultFormValue = FormValue | (FormValue & WasteFormValue);
 
 export interface ValidationErrors {
     errorFields: Array<string>,

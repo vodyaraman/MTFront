@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import './CallbackForm.scss';
 
 // Типы
-import type { IndividualDataType, LegalDataType, MessageBot, ResultFormValue, ValidationErrors } from '../../types/types';
+import type { IndividualDataType, LegalDataType, MessageBot, ResultFormValue, ValidationErrors, SelectedContactMethod } from '../../types/types';
 import { validateForm } from "../../utils/validateInput";
 import { sendForm } from "@/utils/sendForm";
 import CrossIcon from "@/assets/icons/cross-icon";
@@ -18,8 +18,19 @@ export default function CallbackForm() {
         sendMessageStatus: false,
     })
 
-    const [selectedContactMethod, setSelectedContactMethod] = useState<'phone' | 'email' | null>(null);
+    const [selectedContactMethod, setSelectedContactMethod] = useState<SelectedContactMethod>(null);
     const [contactValue, setContactValue] = useState('');
+
+    const getContactMethodPlaceholder = (selectedMethod: SelectedContactMethod) => {
+        switch (selectedMethod) {
+            case 'phone':
+                return 'Телефон';
+            case 'email':
+                return 'Почта';
+            case 'telegram':
+                return '@Telegram ID';
+        }
+    }
 
     const initialLegalData = {
         inn: { value: '', name: 'inn' },
@@ -75,7 +86,7 @@ export default function CallbackForm() {
     }
 
     const handleContactMethodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedMethod = e.target.value as 'email' | 'phone';
+        const selectedMethod = e.target.value as SelectedContactMethod;
         setSelectedContactMethod(selectedMethod);
         setErrorFields([]);
         setContactValue('');
@@ -96,13 +107,13 @@ export default function CallbackForm() {
         }
 
         const updatedFormValues: ResultFormValue = {
-            ...formValues,
+            ...(formValues as any),
             ...(wasteItem ? { waste: { value: wasteItem, name: 'waste' } } : {}),
-            [selectedContactMethod as 'email' | 'phone']: {
+            [selectedContactMethod]: {
                 value: contactValue,
                 name: selectedContactMethod,
             },
-        }
+        } as ResultFormValue;
 
         validationResults = validateForm(updatedFormValues);
 
@@ -205,6 +216,7 @@ export default function CallbackForm() {
                     <option className="methods-list__item" disabled>Выберите способ связи</option>
                     <option className="methods-list__item" value='phone'>Телефон</option>
                     <option className="methods-list__item" value='email'>Email</option>
+                    <option className="methods-list__item" value='telegram'>Telegram ID</option>
                 </select>
             </div>
 
@@ -213,9 +225,12 @@ export default function CallbackForm() {
                     <input
                         className={clsx("callback-form__contacts-input C-input", errorFields.includes(selectedContactMethod) && 'error-input')}
                         name={selectedContactMethod}
-                        placeholder={selectedContactMethod === 'phone' ? 'Телефон' : 'Почта'}
+                        placeholder={getContactMethodPlaceholder(selectedContactMethod)}
                         value={contactValue}
-                        onChange={e => setContactValue(e.target.value)}
+                        onChange={e => {
+                            setContactValue(e.target.value);
+                            setErrorFields(prev => prev.filter(field => field !== selectedContactMethod));
+                        }}
                     />
                 )
             }
