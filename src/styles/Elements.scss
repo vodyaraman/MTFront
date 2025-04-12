@@ -3,7 +3,7 @@
 
 @mixin C-title($text-align: left, $color: white) {
     @include wadik-text($text-align);
-    line-height: calc(2.5 * var(--index));
+    line-height: calc(4 * var(--index));
     width: calc(1.5rem * 33);
     margin: 0;
     text-shadow: $text-shadow;
@@ -22,14 +22,15 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
     padding: 24px;
     border: none;
     outline: none;
-    font-size: calc(0.3 * var(--index));
+    font-size: 1.35rem;
 }
 
 .C-link {
     @include roboto-text();
     text-shadow: $shadow-text-l;
+    text-decoration: none;
     color: #fff;
-    font-size: calc(0.35 * var(--index));
+    font-size: 1.35rem;
     transition: .3s;
 
     &:hover {
@@ -88,13 +89,6 @@ $shadow-text-l: 0px 0px 4px rgba(0, 0, 0, 0.6235294118);
             @if $breakpoint ==phone {
                 width: 20px;
                 height: 20px;
-            }
-        }
-
-        .C-text {
-
-            @if $breakpoint ==phone {
-                font-size: 1.3rem;
             }
         }
     }
