@@ -1,14 +1,16 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import "./MainButton.scss";
+import clsx from "clsx";
 
 interface MainButtonProps {
   text: string;
   href?: string;
   style?: "contained";
+  className?: string;
 }
 
-const MainButton = ({ text, href = "/", style }: MainButtonProps) => {
+const MainButton = ({ text, href = "/", style, className }: MainButtonProps) => {
   const textRef = useRef<HTMLSpanElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
 
@@ -43,7 +45,7 @@ const MainButton = ({ text, href = "/", style }: MainButtonProps) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <span ref={textRef} className="main-button__text">{text}</span>
+      <span ref={textRef} className={clsx("main-button__text", className)}>{text}</span>
     </a>
   );
 };

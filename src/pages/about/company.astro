@@ -1,12 +1,12 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import AnimatedBackground from "@/components/wave_background/Background";
-import Scroller from "@/components/scroller/Scroller";
-import HeroImage from "@/assets/about-images/hero.png";
-import Advantages from "@/components/about-components/Advantages.astro";
-import "../about/_index.scss";
-import MainButton from "@/components/main_button/MainButton";
-import AnimationWrapper from "./_animation";
+import Layout from '../../layouts/Layout.astro';
+import AnimatedBackground from '@/components/wave_background/Background';
+import Scroller from '@/components/scroller/Scroller';
+import HeroImage from '@/assets/about-images/hero.png';
+import Advantages from '@/components/about-components/Advantages.astro';
+import '../about/_index.scss';
+import MainButton from '@/components/main_button/MainButton';
+import AnimationWrapper from './_animation';
 ---
 
 <Layout>
@@ -23,24 +23,19 @@ import AnimationWrapper from "./_animation";
       </h2>
 
       <p class="about__text">
-        Наша компания — надёжный партнёр в сфере экологических решений,
-        работающий в Мурманске и за его пределами. Мы специализируемся на полном
-        цикле обращения с отходами: от сбора до утилизации и размещения. За годы
-        работы мы зарекомендовали себя как устойчивый и высокопрофессиональный
-        участник отрасли.
+        Наша компания — надёжный партнёр в сфере экологических решений, работающий в Мурманске и за
+        его пределами. Мы специализируемся на полном цикле обращения с отходами: от сбора до
+        утилизации и размещения. За годы работы мы зарекомендовали себя как устойчивый и
+        высокопрофессиональный участник отрасли.
       </p>
 
-      <div class="button-wrapper"> 
-        <MainButton
-          client:load
-          text="Далее"
-          href="/about/trust"
-          style="contained"
-        />
+      <div class="button-wrapper">
+        <MainButton client:load text="Далее" href="/about/trust" style="contained" />
         <MainButton
           client:load
           text="Связаться с нами"
           href="/contacts"
+          className="about__button"
         />
       </div>
     </section>
@@ -49,23 +44,23 @@ import AnimationWrapper from "./_animation";
   <Scroller
     pages={[
       {
-        title: "Экологический подход",
-        href: "/about/approach",
-        image: "/images/main-page-og.png",
+        title: 'Экологический подход',
+        href: '/about/approach',
+        image: '/images/main-page-og.png',
       },
       {
-        title: "Нам доверяют",
-        href: "/about/trust",
-        image: "/images/main-page-og.png",
+        title: 'Нам доверяют',
+        href: '/about/trust',
+        image: '/images/main-page-og.png',
       },
       {
-        title: "Связаться с нами",
-        href: "/contacts",
-        image: "/images/main-page-og.png",
+        title: 'Связаться с нами',
+        href: '/contacts',
+        image: '/images/main-page-og.png',
       },
     ]}
     client:load
   />
 
-  <AnimationWrapper client:only/>
+  <AnimationWrapper client:only />
 </Layout>

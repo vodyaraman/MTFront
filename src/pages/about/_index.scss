@@ -25,7 +25,6 @@ main {
                 padding: 0;
                 gap: 2rem;
                 z-index: 3;
-                overflow: hidden;
 
                 &--company {
                         align-items: flex-end;
@@ -58,7 +57,7 @@ main {
 
                 @media (max-width: map.get($breakpoints, small-desktop)) {
                         width: 100%;
-                        font-size: calc(1.9 * (1vh + 1vw));
+                        font-size: calc(1.61 * (1vh + 1vw));
                 }
         }
 
@@ -78,6 +77,12 @@ main {
 
                 @media (max-width: map.get($breakpoints, small-desktop)) {
                         display: none;
+                }
+        }
+
+        &__button {
+                @media (max-width: map.get($breakpoints, small-desktop)) {
+                        font-size: 1.15rem;
                 }
         }
 }

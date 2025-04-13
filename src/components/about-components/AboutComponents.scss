@@ -3,7 +3,8 @@
 .about {
     &__grass {
         @include flexbox(column);
-        width: 100%;
+        width: 90%;
+        min-width: 100px;
 
         img {
             display: block;
@@ -33,7 +34,14 @@
                 width: 100%;
                 height: 100%;
             }
+
+            @media (max-width: map.get($breakpoints, small-desktop)) {
+                width: 90%;
+                height: 90%;
+            }
         }
+
+
     }
 
     &__advantages,
@@ -44,24 +52,22 @@
         height: auto;
         gap: 2rem;
         box-sizing: border-box;
-
-        @media (max-width: map.get($breakpoints, phone)) {
-            @include flexbox(column);
-            gap: 5px;
-            padding: 0 14vw;
-        }
     }
 
     &__advantages {
         justify-content: space-around;
         width: 32rem;
-        height: 100vh;
-        padding: 0;
+
+        @media (max-width: map.get($breakpoints, phone)) {
+            @include flexbox(column);
+            gap: 4rem;
+            justify-content: center;
+        }
     }
 
     &__clients {
         @media (max-width: map.get($breakpoints, small-desktop)) {
-            display: grid !important;
+            display: grid;
             grid-template-columns: 1fr 1fr;
         }
     }
@@ -70,17 +76,17 @@
         overflow: hidden;
         height: 100vh;
         position: relative;
-      
+
         @media (max-width: map.get($breakpoints, phone)) {
-          height: auto;
-          overflow: visible;
+            height: auto;
+            overflow: visible;
         }
-      
+
         .slider-track {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
-      }
-      
+    }
+
 }
