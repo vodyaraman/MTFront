@@ -10,7 +10,6 @@ export default function AnimationWrapper() {
 
     const tl = gsap.timeline({ delay: 1.2, defaults: { ease: "power3.out" } });
 
-    tl.from("#swup", { width: "0%", duration: 0.33 }, "-=0.5");
     tl.from(".about", { opacity: 0, duration: 0.8 }, "-=0.4");
     tl.from(".about__content", { opacity: 0, y: 40, duration: 0.8, stagger: 0.2 }, "-=0.6");
   }, []);

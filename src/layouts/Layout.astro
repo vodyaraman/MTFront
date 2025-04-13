@@ -1,7 +1,9 @@
 ---
+import Loader from "@/components/loader/Loader.astro";
 import LenisInit from "./LenisInit";
 import TransitionLayout from "./TransitionLayout.astro";
 import "@/styles/Global.scss";
+import LoaderAnimation from "@/components/loader/LoaderAnimation";
 
 const {
 	title = "Metal Trading",
@@ -30,7 +32,9 @@ const {
 	</head>
 	<body>
 		<TransitionLayout>
+			<Loader/>
 			<slot />
+			<LoaderAnimation client:load/>
 		</TransitionLayout>
 	</body>
 </html>
