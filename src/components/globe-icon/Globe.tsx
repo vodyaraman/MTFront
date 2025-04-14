@@ -49,8 +49,19 @@ export default function Globe() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  useEffect(() => {
+    return () => {
+      const canvas = document.querySelector("canvas");
+      if (canvas) {
+        canvas.remove();
+      }
+    };
+  }, []);
+
   return (
-    <Canvas camera={{ position: [0, 0, 3], fov: 45 }}>
+    <Canvas camera={{ position: [0, 0, 3], fov: 45 }}
+    gl={{ alpha: true, preserveDrawingBuffer: false }}
+    style={{ background: "transparent" }}>
       <ambientLight intensity={5} />
       <directionalLight position={[5, 5, 5]} intensity={3} castShadow />
       <pointLight position={[-3, 2, 2]} intensity={0.8} color="orange" />
