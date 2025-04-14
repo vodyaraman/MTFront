@@ -39,6 +39,11 @@
                 width: 90%;
                 height: 90%;
             }
+
+            @media (max-width: map.get($breakpoints, phone)) {
+                width: 18rem;
+                height: 18rem;
+            }
         }
 
 
@@ -52,11 +57,6 @@
         height: auto;
         gap: 2rem;
         box-sizing: border-box;
-    }
-
-    &__advantages {
-        justify-content: space-around;
-        width: 32rem;
 
         @media (max-width: map.get($breakpoints, phone)) {
             @include flexbox(column);
@@ -65,10 +65,21 @@
         }
     }
 
+    &__advantages {
+        justify-content: space-around;
+        width: 32rem;
+    }
+
     &__clients {
-        @media (max-width: map.get($breakpoints, small-desktop)) {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .slider-track {
+            @media (max-width: map.get($breakpoints, small-desktop)) {
+                width: 100%;
+                align-items: center;
+
+                > *:nth-child(n + 5) {
+                    display: none !important;
+                  }
+            }
         }
     }
 
