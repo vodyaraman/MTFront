@@ -1,9 +1,16 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+
 import fts from "@/assets/icons/about/clients/fts.svg";
 import mmtp from "@/assets/icons/about/clients/mmtp.svg";
 import pind from "@/assets/icons/about/clients/p-ind.svg";
 import tec from "@/assets/icons/about/clients/tec.svg";
+
+import mpkan from "@/assets/icons/about/clients/mp-kan.png";
+import procurat from "@/assets/icons/about/clients/procurat.png";
+import rusal from "@/assets/icons/about/clients/rusal.png";
+import vitek from "@/assets/icons/about/clients/vitek.png";
+
 import GrassTexture from "./Block";
 import "./AboutComponents.scss";
 
@@ -11,7 +18,11 @@ const logos = [
   { src: fts.src, alt: "Логотип ФТС" },
   { src: mmtp.src, alt: "Логотип ММТП" },
   { src: pind.src, alt: "Логотип Р-Индустрия" },
-  { src: tec.src, alt: "Логотип ТЭЦ" },
+  { src: tec.src, alt: "Логотип Мурманская ТЭЦ" },
+  { src: procurat.src, alt: "Логотип Прокуратура Мурманской области" },
+  { src: mpkan.src, alt: "Логотип Морской порт Кандалакша" },
+  { src: rusal.src, alt: "Логотип Русал" },
+  { src: vitek.src, alt: "Логотип VITEK" },
 ];
 
 export default function ClientsSlider() {
@@ -33,12 +44,12 @@ export default function ClientsSlider() {
           const totalWidth = track.scrollWidth / 2;
 
           gsap.to(track, {
-            x: `${totalWidth}`,
+            x: totalWidth,
             duration: 30,
             ease: "none",
             repeat: -1,
             modifiers: {
-              x: gsap.utils.unitize((x) => parseFloat(x) % totalWidth),
+              x: (x) => `${parseFloat(x) % totalWidth}px`,
             },
           });
         } else {

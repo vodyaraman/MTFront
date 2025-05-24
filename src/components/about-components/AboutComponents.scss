@@ -76,10 +76,6 @@
                 @include flexbox(row);
                 width: 100%;
                 align-items: center;
-
-                > *:nth-child(n + 5) {
-                    display: none !important;
-                  }
             }
         }
     }
