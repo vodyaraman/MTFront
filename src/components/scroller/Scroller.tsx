@@ -140,7 +140,7 @@ export default function Scroller({ pages }: ScrollerProps) {
                         </a>
                     ))}
                 </div>
-                <MainButton text="Узнать больше" href="/about"/>
+                <MainButton text="На главную" href="/"/>
                 <MainButton text="Выйти на связь" href="/contacts"/>
             </div>
         </div>

@@ -47,7 +47,7 @@ export default function FilteredData() {
 
     const handleSearch = useCallback((value: string) => {
         if (value === "") {
-            setFilteredData([]); // Синхронное обновление
+            setFilteredData([]);
             setIsExpanded(true);
             return;
         }
@@ -103,7 +103,9 @@ export default function FilteredData() {
             {(isExpanded || scrolled) && <ArrowIcon className={clsx('input-up')} onClick={handleArrowClick} />}
             <SearchInput ref={inputRef} inputValue={inputValue} handleChange={handleInputChange} />
             {filteredData.length > 0 && (
-                <DataList filteredData={filteredData} onLinkClick={handleWasteLinkClick} />
+                <div className='filtered-data__wrapper'>
+                    <DataList filteredData={filteredData} onLinkClick={handleWasteLinkClick} />
+                </div>
             )}
         </div>
     )

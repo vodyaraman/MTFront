@@ -4,16 +4,13 @@
 
 .data-list {
     height: 700px;
-    padding: 2rem;
+    padding: 1rem;
     overflow-y: auto;
 
     font-weight: 600;
-    text-shadow: c.$shadow-text-l;
-    background-color: rgba(#F5FFEE, .7);
-    color: #fff;
-    border-radius: 20px;
-    font-size: 1.2rem;
-
+    
+    color: #1e1b1b;
+    font-size: 1.25rem;
     list-style: none;
 
     &__header {
@@ -26,8 +23,7 @@
 
     &__header-text {
         align-self: center;
-        font-weight: 900;
-        text-shadow: c.$shadow-text-l;
+        font-weight: bold;
     }
 
     &__main {
@@ -38,7 +34,7 @@
 
     &__waste-link {
         text-decoration: none;
-        color: #fff;
+        color: #0f0e0e;
     }
 
     &__row {

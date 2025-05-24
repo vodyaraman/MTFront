@@ -18,31 +18,45 @@ export default function ClientsSlider() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(max-width: 768px)").matches) return;
-  
     const track = trackRef.current;
     if (!track) return;
-  
+
     const imgs = Array.from(track.querySelectorAll("img"));
     let loaded = 0;
-  
+
     const checkAndStart = () => {
       loaded++;
       if (loaded === imgs.length) {
-        const totalHeight = track.scrollHeight / 2;
-  
-        gsap.to(track, {
-          y: `-=${totalHeight}`,
-          duration: 30,
-          ease: "none",
-          repeat: -1,
-          modifiers: {
-            y: gsap.utils.unitize((y) => parseFloat(y) % totalHeight),
-          },
-        });
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        if (isMobile) {
+          const totalWidth = track.scrollWidth / 2;
+
+          gsap.to(track, {
+            x: `${totalWidth}`,
+            duration: 30,
+            ease: "none",
+            repeat: -1,
+            modifiers: {
+              x: gsap.utils.unitize((x) => parseFloat(x) % totalWidth),
+            },
+          });
+        } else {
+          const totalHeight = track.scrollHeight / 2;
+
+          gsap.to(track, {
+            y: `-=${totalHeight}`,
+            duration: 30,
+            ease: "none",
+            repeat: -1,
+            modifiers: {
+              y: gsap.utils.unitize((y) => parseFloat(y) % totalHeight),
+            },
+          });
+        }
       }
     };
-  
+
     imgs.forEach((img) => {
       if (img.complete) {
         checkAndStart();
@@ -50,15 +64,16 @@ export default function ClientsSlider() {
         img.addEventListener("load", checkAndStart);
       }
     });
-  }, []);  
+  }, []);
+
 
   return (
-      <div className="slider-track" ref={trackRef}>
-        {[...logos, ...logos].map((logo, index) => (
-          <GrassTexture key={index}>
-            <img src={logo.src} alt={logo.alt} className="inside inside--clients" />
-          </GrassTexture>
-        ))}
-      </div>
+    <div className="slider-track" ref={trackRef}>
+      {[...logos, ...logos].map((logo, index) => (
+        <GrassTexture key={index}>
+          <img src={logo.src} alt={logo.alt} className="inside inside--clients" />
+        </GrassTexture>
+      ))}
+    </div>
   );
 }

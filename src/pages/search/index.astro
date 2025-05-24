@@ -5,6 +5,7 @@ import FilteredData from '../../components/filtered-data/FilteredData';
 //Стили
 import './_index.scss';
 import AnimationWrapper from './_animation';
+import Scroller from '@/components/scroller/Scroller';
 ---
 
 <Layout>
@@ -26,6 +27,27 @@ import AnimationWrapper from './_animation';
       </div>
     </div>
   </section>
+
+  <Scroller
+    pages={[
+      {
+        title: 'Главная',
+        href: '/',
+        image: '/images/main-page-og.png',
+      },
+      {
+        title: 'Услуги',
+        href: '/about',
+        image: '/images/main-page-og.png',
+      },
+      {
+        title: 'Контакты',
+        href: '/contacts',
+        image: '/images/main-page-og.png',
+      },
+    ]}
+    client:load
+  />
 
   <AnimationWrapper client:only/>
 </Layout>
